@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual — StreamGraphics Pro</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312b886'/%3E%3Ctext x='32' y='45' font-family='Arial' font-size='30' font-weight='bold' fill='%2304231a' text-anchor='middle'%3ESG%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span> StreamGraphics Pro</a>
+  <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
+  <nav id="nv">
+    <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
+    <a href="tutorials.html">Tutorials</a><a href="docs.html" class="on">Docs</a><a href="faq.html">FAQ</a>
+    <a class="navcta" href="pricing.html">Download</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap docs">
+  <aside class="side">
+    <div class="grp">Start</div>
+    <a href="#start">Getting started</a>
+    <a href="#output">Adding the output (OBS/vMix)</a>
+    <div class="grp">Graphics</div>
+    <a href="#builder">Graphics builder</a>
+    <a href="#animations">Animations</a>
+    <a href="#timers">Timers &amp; clocks</a>
+    <a href="#slides">Slides</a>
+    <div class="grp">Scoreboards</div>
+    <a href="#scoreboard">Scoreboard &amp; scorer</a>
+    <a href="#multiboard">Multiple courts</a>
+    <div class="grp">Shows &amp; data</div>
+    <a href="#library">Show Library &amp; Program</a>
+    <a href="#csv">CSV mail-merge</a>
+    <a href="#media">Images &amp; media</a>
+    <a href="#templates">Templates</a>
+    <div class="grp">Product</div>
+    <a href="#license">Licensing</a>
+    <a href="#tips">Tips &amp; troubleshooting</a>
+  </aside>
+
+  <div class="doc">
+    <h1 style="margin:0 0 6px">StreamGraphics Pro — Manual</h1>
+    <p class="lead">Everything you need to build and run your graphics.</p>
+
+    <h2 id="start">Getting started</h2>
+    <p>StreamGraphics Pro runs on your own computer. Launch it and it opens a home screen (the "All graphics" menu) listing each graphic: <b>Presenter's Timer</b>, <b>Beach Volleyball Scoreboard</b>, <b>Lower Third / Graphics Builder</b>, and the <b>Show Library</b>.</p>
+    <p>Each graphic has two parts: a <b>control</b> page (you drive it from here, in any browser on your network) and an <b>output</b> page (the transparent view you put on your stream). Open a control, and keep the output for OBS/vMix.</p>
+
+    <h2 id="output">Adding the output to OBS / vMix</h2>
+    <p>Every graphic shows its <b>Output URL</b>. Copy it, then:</p>
+    <ul>
+      <li><b>OBS:</b> add a <b>Browser Source</b>, paste the URL, set size to <code>1920 × 1080</code>.</li>
+      <li><b>vMix:</b> add a <b>Web Browser</b> input, paste the URL, set <code>1920 × 1080</code>.</li>
+    </ul>
+    <p>The output is transparent, so your graphic sits over your video with no background. Need a solid colour for a hardware keyer instead? Use the <b>Chroma key</b> option and pick a colour that isn't in your graphic.</p>
+    <p><b>Tip:</b> on the first load, give the browser source a few seconds to warm up before going live.</p>
+
+    <h2 id="builder">Graphics builder</h2>
+    <p>The builder is a free-form 1920×1080 canvas. Add layers from the buttons: <b>Text, Box, Image, Video, Ticker, Timer, Slides, BG</b>. Click a layer to select it; drag to move; use the handles to resize and rotate; press <kbd>Delete</kbd> to remove it. Arrow keys nudge 1px (<kbd>Shift</kbd> = 10px), and the <b>Align</b> buttons line things up.</p>
+    <p>The <b>Layers</b> panel lists everything top-to-bottom. Click a row to select, double-click its name to rename, use 👁 to show/hide and 🔒 to lock. Shift/Ctrl-click several rows and hit <b>Group</b> to move and animate them together. On the canvas, Alt-click to reach a layer hidden beneath another.</p>
+    <p>When a design is ready, <b>Take to air</b> to preview on the output, or <b>Save to Library</b> to keep it as a preset. <b>New</b> starts a blank design.</p>
+
+    <h2 id="animations">Animations</h2>
+    <p>Every layer has its own <b>Animate ON</b> and <b>Animate OFF</b> — type, delay and duration — so you can stagger reveals. Choose from fade, slides, fly-in from off-screen, bounce, pop and spin. Hit <b>Preview animation</b> to see it right in the builder.</p>
+    <p>Inside a group, set a layer's animation to <b>None</b> and it follows the group's animation — so a background box flies in with the group instead of just popping on.</p>
+
+    <h2 id="timers">Timers &amp; clocks</h2>
+    <p>There's a standalone <b>Presenter's Timer</b> (with warning colours and overtime for speakers), and a <b>Timer layer</b> you can drop into any design. Modes: countdown, count-up, countdown-to-a-time, and a live clock. The clock is anchored to the app, so multiple machines stay perfectly in sync.</p>
+
+    <h2 id="slides">Slides</h2>
+    <p>Add a <b>Slides</b> layer, type your blocks of text (one blank line between slides), then advance with First / Prev / Next / Blank — like lyrics or scripture. Use <code>//</code> or a new line for a line break, and start a line with <code>-</code> for a bullet. Give slides an optional background panel that stays put while the text changes.</p>
+
+    <h2 id="scoreboard">Scoreboard &amp; the big-button Scorer</h2>
+    <p>The Scoreboard control sets team names, seeds, colours, logos and per-game scores. Take it to air like any graphic. For live scoring, open the <b>Scorer</b> — a clean, big-button screen (great on a tablet) that just keeps score; it can't accidentally take the board off air (only the director does that from the full control).</p>
+
+    <h2 id="multiboard">Multiple courts</h2>
+    <p>Run several independent scoreboards from one app. On the Scoreboard control, use <b>＋ New board</b> to add a court, and the dropdown to switch between them. Each board has its own output and scorer link — so five courts is five browser-source URLs, one app, one computer.</p>
+
+    <h2 id="library">Show Library &amp; Program output</h2>
+    <p>The <b>Show Library</b> holds your saved graphics. Flip any of them on or off and they appear together on the single <b>Program output</b> — add that one URL to OBS/vMix and switch graphics live from the Library. Each preset can be Edited (back into the builder), renamed or deleted.</p>
+
+    <h2 id="csv">CSV mail-merge</h2>
+    <p>Mark a text or image layer as a <b>CSV field</b> in the builder (e.g. name it <code>PlayerName</code>). Save it to the Library, then <b>Import CSV</b> on that graphic — the column headers match your field names, and each row becomes a ready-to-go version. Step through with ◀ ▶ or jump to anyone by name. No spreadsheet? Use <b>Manual Add</b> to type entries by hand. There's a per-graphic option to animate the change and a delay to make it smooth.</p>
+
+    <h2 id="media">Images &amp; media</h2>
+    <p>Driving images from a CSV? Drop your photos into the Library's image panel — no folder access needed — and organise them into folders per show/event. Your spreadsheet only needs the file name (even a full path from your computer works); the app finds the image by name in any folder.</p>
+
+    <h2 id="templates">Templates</h2>
+    <p>In the builder, hit <b>▤ Templates</b> to start from a ready-made design — clean lower thirds, title cards, a countdown, a ticker, a sponsor bar and more. Customise it and Save to Library. You can also <b>Save current as Template</b>, and <b>Export / Import</b> templates as files to share or sell as packs.</p>
+
+    <h2 id="license">Licensing</h2>
+    <p>The free version shows a small watermark on the output. On the home screen, open the <b>License</b> card, paste your key and click <b>Activate</b> — the watermark disappears and any add-ons unlock. Licenses work offline, so no internet is needed at the venue.</p>
+
+    <h2 id="tips">Tips &amp; troubleshooting</h2>
+    <p><b>I updated but don't see the new feature.</b> Download the latest version and restart the app — refreshing the browser alone won't add new features.</p>
+    <p><b>My animation isn't playing on air.</b> Animations play on the output when a graphic goes on/off air. Use <b>Preview animation</b> in the builder to check it instantly.</p>
+    <p><b>A CSV image isn't showing.</b> Make sure the image is uploaded in the Library's image panel and the image layer has a matching <b>CSV field</b> name.</p>
+    <p><b>The first load in OBS/vMix lags.</b> That's the browser source warming up — let it sit a few seconds before going live; it's instant after that.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div>© StreamGraphics Pro</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Tutorials</a> · <a href="faq.html">FAQ</a> · <a href="pricing.html">Pricing</a></div></div></footer>
+</body>
+</html>
