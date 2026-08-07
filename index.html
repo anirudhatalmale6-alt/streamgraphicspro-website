@@ -8,8 +8,16 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef6a4c'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="site.css">
 <style>
-  .hero-shot{margin:34px auto 0;max-width:900px}
-  .hero-shot img{width:100%;height:auto;border-radius:16px;box-shadow:0 26px 64px rgba(20,20,40,.28);border:1px solid var(--line);display:block}
+  .hero-grid{display:flex;gap:46px;align-items:center;text-align:left}
+  .hero-copy{flex:1.02;min-width:0}
+  .hero-art{flex:1.05;min-width:0}
+  .hero-art img{width:100%;height:auto;border-radius:16px;box-shadow:0 26px 64px rgba(20,20,40,.28);border:1px solid var(--line);display:block}
+  .hero-copy p.sub{margin-left:0;margin-right:0;max-width:none}
+  .hero-copy .cta{justify-content:flex-start}
+  .bigfor{margin:2px 0 22px;font-size:clamp(19px,2.6vw,30px);font-weight:900;letter-spacing:.01em;line-height:1.12;
+    background:linear-gradient(90deg,#ef6a4c,#f4a63c);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bigfor .amp{color:var(--muted);-webkit-text-fill-color:var(--muted);font-weight:700;font-size:.7em}
+  @media(max-width:860px){.hero-grid{flex-direction:column;text-align:center}.hero-copy .cta{justify-content:center}.hero-art{width:100%}}
   #in-action{padding-top:6px}
   .showrow{display:flex;gap:44px;align-items:center;margin:0 0 50px}
   .showrow.rev{flex-direction:row-reverse}
@@ -36,16 +44,19 @@
   </nav>
 </div></header>
 
-<div class="hero"><div class="wrap">
-  <span class="pill">Made for OBS · vMix · ATEM · Video/Vision Switchers</span>
-  <h1>Beautiful live graphics.<br>Fast, simple &amp; friendly.</h1>
-  <p class="sub">Lower thirds, scoreboards, images, countdowns, timers, slides and score bugs — designed your way and controlled from any device on your network. The entire app lives on your own computer, so there's nothing to worry about. Buy once, own forever. No monthly fees. No expiration date. Just clean graphics that make you look great.</p>
-  <p class="sub" style="font-weight:700;color:var(--accent-dk);margin-top:-6px">Built by video professionals, for video professionals.</p>
-  <div class="cta">
-    <a class="btn" href="pricing.html">Try it free</a>
-    <a class="btn alt" href="tutorials.html">Watch a quick video</a>
+<div class="hero"><div class="wrap hero-grid">
+  <div class="hero-copy">
+    <span class="pill">Live broadcast graphics</span>
+    <h1>Beautiful live graphics.<br>Fast, simple &amp; friendly.</h1>
+    <div class="bigfor">MADE FOR OBS <span class="amp">·</span> vMIX <span class="amp">·</span> ATEM <span class="amp">·</span> SWITCHERS</div>
+    <p class="sub">Lower thirds, scoreboards, images, countdowns, timers, slides and score bugs — designed your way and controlled from any device on your network. The entire app lives on your own computer, so there's nothing to worry about. Buy once, own forever. No monthly fees. No expiration date. Just clean graphics that make you look great.</p>
+    <p class="sub" style="font-weight:700;color:var(--accent-dk);margin-top:-6px">Built by video professionals, for video professionals.</p>
+    <div class="cta">
+      <a class="btn" href="pricing.html">Try it free</a>
+      <a class="btn alt" href="tutorials.html">Watch a quick video</a>
+    </div>
   </div>
-  <div class="hero-shot"><img src="img/scoreboard.png" alt="A StreamGraphics Pro beach volleyball scoreboard shown over live footage" loading="lazy"></div>
+  <div class="hero-art"><img src="img/hero.png" alt="A StreamGraphics Pro beach volleyball scoreboard keyed over live footage" fetchpriority="high"></div>
 </div></div>
 
 <section id="features"><div class="wrap">
@@ -76,36 +87,36 @@
   <div class="center" style="margin-bottom:34px"><span class="pill" style="margin-bottom:12px">See it in action</span><h2>Real graphics, built right in the app</h2><p class="lead">A look at the lower thirds, scoreboards, timers and more you can make — shown over sample footage. Swap in your own shows and it only gets better.</p></div>
 
   <div class="showrow">
-    <div class="shot"><img src="img/builder.png" alt="The StreamGraphics Pro drag-and-drop graphics builder" loading="lazy"></div>
-    <div class="txt"><h3>Design your own titles</h3><p>A free-form drag-and-drop canvas — text, boxes, images, video, tickers and timers. Move, style and animate every layer on its own. No rigid templates, just your look.</p></div>
+    <div class="shot"><img src="img/builder.gif" alt="Dragging a name into a lower third bar, then adding a second line, in the builder" loading="lazy"></div>
+    <div class="txt"><h3>Design your own titles</h3><p>A free-form drag-and-drop canvas — text, boxes, images, video, tickers and timers. Drag a layer into place, drop in another, then move, style and animate each one on its own. No rigid templates, just your look.</p></div>
   </div>
   <div class="showrow rev">
-    <div class="shot"><img src="img/library.png" alt="The Show Library with saved presets" loading="lazy"></div>
-    <div class="txt"><h3>Templates &amp; presets</h3><p>Start from a ready-made look, save any graphic as your own preset, then flip your favourites on and off — all on one output. Build your show once, run it with a tap.</p></div>
+    <div class="shot"><img src="img/templates.png" alt="Built-in template gallery and a title card rendered from one" loading="lazy"></div>
+    <div class="txt"><h3>Templates &amp; presets</h3><p>Start from a ready-made look — clean lower thirds, name bars, title cards, tickers, countdowns and more — then customise it and save it as your own preset. Flip your favourites on and off, all on one output.</p></div>
   </div>
   <div class="showrow">
     <div class="shot"><img src="img/baseball.png" alt="A baseball scoreboard keyed over live field footage" loading="lazy"></div>
     <div class="txt"><h3>Built for vMix, OBS &amp; ATEM</h3><p>Transparent output for OBS &amp; vMix, and fully customizable chroma for any ATEM or hardware switcher — your graphics drop straight onto the program, keyed clean.</p></div>
   </div>
   <div class="showrow rev">
-    <div class="shot"><img src="img/roster.png" alt="A player nameplate filled from a spreadsheet" loading="lazy"></div>
-    <div class="txt"><h3>Use simple spreadsheets</h3><p>Drop in a spreadsheet and it fills a graphic for every person — a whole roster, a speaker list, a graduation program — clicking through one by one.</p></div>
+    <div class="shot"><img src="img/spreadsheet.png" alt="A roster spreadsheet filling a player nameplate graphic" loading="lazy"></div>
+    <div class="txt"><h3>Use simple spreadsheets</h3><p>Drop in a spreadsheet and it fills a graphic for every person — a whole roster, a speaker list, a graduation program. Pick the row and the name, number and title fill in automatically; click through them one by one.</p></div>
   </div>
   <div class="showrow">
-    <div class="shot"><img src="img/timer.gif" alt="A live countdown timer ticking down" loading="lazy"></div>
-    <div class="txt"><h3>Timers &amp; clocks</h3><p>Countdowns, count-ups, a clock, and a speaker timer with friendly warning colours — as a full graphic or a layer inside any design. Anchored to the app, so every screen matches to the second.</p></div>
+    <div class="shot"><img src="img/timer.gif" alt="Four live clocks — countdown, count-up, time of day, and a speaker timer flashing red at zero" loading="lazy"></div>
+    <div class="txt"><h3>Timers &amp; clocks</h3><p>Countdowns, count-ups, a house clock, and a speaker timer that turns amber in the last seconds and flashes red the moment it runs over. Show one big, or several at once — as a full graphic or a layer inside any design. Anchored to the app, so every screen matches to the second.</p></div>
   </div>
   <div class="showrow rev">
-    <div class="shot"><img src="img/lower-third.png" alt="A lower third name-and-title bar over footage" loading="lazy"></div>
-    <div class="txt"><h3>Lower thirds</h3><p>Clean, animated name-and-title bars for guests, speakers and callouts — styled your way, staggered on with their own animation, and flipped on air with a single click.</p></div>
+    <div class="shot"><img src="img/lower-thirds.png" alt="Four lower-third styles — clean, crimson, teal accent and a full-width bar" loading="lazy"></div>
+    <div class="txt"><h3>Lower thirds</h3><p>Clean, animated name-and-title bars for guests, speakers and callouts — big or small type, accent colours, wide bars, add a logo or headshot. Styled your way, staggered on with their own animation, and flipped on air with a single click.</p></div>
   </div>
   <div class="showrow">
-    <div class="shot"><img src="img/scorer.png" alt="The big-button Scorer running on a device" loading="lazy"></div>
-    <div class="txt"><h3>Control from any device</h3><p>Push full-screen images, logos, sponsor slides and scores on and off air from any laptop, phone or tablet on your network — even hand a volunteer a giant-button screen they can't mess up.</p></div>
+    <div class="shot"><img src="img/library.png" alt="The Show Library — every graphic as a named preset with an on-air switch" loading="lazy"></div>
+    <div class="txt"><h3>Control from any device</h3><p>Your whole show lives in one Library — every graphic a named preset with its own on-air switch. Flip them on and off from any laptop, phone or tablet on your network, hand a volunteer a giant-button screen, or run it all from a Stream Deck.</p></div>
   </div>
   <div class="showrow rev">
-    <div class="shot"><img src="img/scoreboard.png" alt="A beach volleyball scoreboard over live footage" loading="lazy"></div>
-    <div class="txt"><h3>Scoreboards</h3><p>Ready-made boards for beach volleyball and baseball/softball, with basketball and football on the way — per-game scoring, team logos, and multiple courts from one computer.</p></div>
+    <div class="shot"><img src="img/scoreboard-combo.png" alt="The scoreboard operator panel above, and the same board keyed live over the beach" loading="lazy"></div>
+    <div class="txt"><h3>Scoreboards</h3><p>Score it in the operator panel, watch it update live on air — ready-made boards for beach volleyball and baseball/softball, with basketball and football on the way. Per-game scoring, team logos, and multiple courts from one computer.</p></div>
   </div>
   <div class="showrow">
     <div class="shot"><img src="img/home.png" alt="The StreamGraphics Pro home menu" loading="lazy"></div>
