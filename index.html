@@ -8,9 +8,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef6a4c'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="site.css">
 <style>
-  .hero-grid{display:flex;gap:46px;align-items:center;text-align:left}
-  .hero-copy{flex:1.02;min-width:0}
-  .hero-art{flex:1.05;min-width:0}
+  .hero-grid{display:flex;gap:44px;align-items:center;text-align:left;max-width:1180px}
+  .hero-copy{flex:1;min-width:0}
+  .hero-art{flex:1.18;min-width:0}
+  @media(min-width:861px){.hero-art{margin-top:100px}}  /* drop the image down so it sits level with the body text */
   .hero-art img{width:100%;height:auto;border-radius:16px;box-shadow:0 26px 64px rgba(20,20,40,.28);border:1px solid var(--line);display:block}
   .hero-copy p.sub{margin-left:0;margin-right:0;max-width:none}
   .hero-copy .cta{justify-content:flex-start}
