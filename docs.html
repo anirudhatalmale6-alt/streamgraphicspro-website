@@ -52,6 +52,8 @@
     <a href="#manual-add">Manual entries</a>
     <a href="#media">Images &amp; media folders</a>
     <a href="#templates">Templates</a>
+    <div class="grp">Control surfaces</div>
+    <a href="#control-api">Stream Deck &amp; Companion</a>
     <div class="grp">Product</div>
     <a href="#license">Licensing &amp; watermark</a>
     <a href="#updates">Updating</a>
@@ -66,12 +68,13 @@
     <h2 id="install">Install &amp; launch</h2>
     <p>StreamGraphics Pro runs on your own computer — Windows or Mac. Download it from the pricing page, install, and launch it like any program. When it starts, it opens the <b>home screen</b> (the "All graphics" menu) in your browser. Leave the app running for the whole show; closing it takes your graphics offline.</p>
     <h3>The home screen</h3>
-    <p>The home screen lists the four graphics and your license status:</p>
+    <p>The home screen lists your graphics, the Control API, and your license status:</p>
     <ul>
       <li><b>Presenter's Timer</b> — a standalone countdown/clock for speakers.</li>
-      <li><b>Beach Volleyball Scoreboard</b> — the scoreboard (and the big-button Scorer).</li>
+      <li><b>Scoreboards</b> — beach volleyball and baseball/softball (each with its output and, for volleyball, the big-button Scorer).</li>
       <li><b>Lower Third / Graphics Builder</b> — design any graphic you like.</li>
       <li><b>Show Library</b> — save graphics and run them together.</li>
+      <li><b>Control API</b> — command URLs for a Stream Deck, Bitfocus Companion or any automation.</li>
     </ul>
     <p>Each entry has an <b>Open control</b> link (the panel you drive it from) and an <b>Output</b> link (the transparent view you put on the stream).</p>
 
@@ -207,6 +210,26 @@
 
     <h2 id="templates">Templates</h2>
     <p>In the builder, click <b>▤ Templates</b> to start from a ready-made design — clean lower thirds in several colours, full-screen title/colour/photo backgrounds, a countdown card, news ticker, "coming up next", sponsor bar, LIVE bug and more. <b>Use</b> loads one in; customise it and Save to Library. You can also <b>Save current as Template</b>, and <b>Export</b> / <b>Import</b> templates as files — so you can share them, or offer packs.</p>
+
+    <h2 id="control-api">Control API — Stream Deck &amp; Bitfocus Companion</h2>
+    <p>StreamGraphics can be driven from a <b>Stream Deck</b>, <b>Bitfocus Companion</b>, or any automation — one web address per button. Everything is addressed by the <b>name</b> you gave it in the app, so a button keeps working no matter how you rearrange your show.</p>
+    <p>Open <b>Control API</b> from the home screen (or go to <code>/control-api</code>). It lists every command with a ready-to-paste URL, a <b>Copy</b> and a <b>Test</b> button, and a box where you set the show computer's network address so the URLs are ready to use from another machine. It even shows your live preset and scoreboard names.</p>
+    <h3>Using it in Bitfocus Companion</h3>
+    <ol>
+      <li>Add a button, then an action: <b>Generic HTTP Request</b>.</li>
+      <li>Set the method to <b>GET</b> and paste a URL from the Control API page.</li>
+      <li>Press the button — the graphic reacts instantly.</li>
+    </ol>
+    <h3>What you can control</h3>
+    <ul>
+      <li><b>Library presets by name</b> — on / off / toggle, and next / previous row for CSV graphics.</li>
+      <li><b>Presenter timer</b> — start / pause / reset / set (e.g. 5:00) / add time / on-air / off.</li>
+      <li><b>A named scoreboard</b> — point +/− per team, next game, show / hide.</li>
+      <li><b>Baseball / softball</b> — run per team, ball / strike / out, clear count, next half-inning, on / off.</li>
+    </ul>
+    <p>Example — a Stream Deck button becomes literally one URL:</p>
+    <p><code>http://YOUR-PC:4000/api/preset/toggle?name=Lower Third - John</code></p>
+    <p><b>Remote control</b> — driving all of this from another location over the internet — is coming as an optional add-on that adds a small always-on relay, so there's no networking setup needed at the venue.</p>
 
     <h2 id="license">Licensing &amp; watermark</h2>
     <p>The free version shows a small "StreamGraphics Pro" mark in the corner of the <b>output</b> (control panels are never marked). To remove it, open the <b>License</b> card on the home screen, paste your license key and click <b>Activate</b>. Licenses verify <b>offline</b>, so no internet is needed at your venue, and a key can also unlock optional add-ons.</p>
