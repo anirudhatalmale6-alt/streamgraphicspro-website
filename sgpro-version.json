@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Builder no longer runs off the edge in a half-width window, and the between-slides animation now plays in the builder with an adjustable speed."
+  "notes": "Edit your spreadsheet rows without leaving the app — shorten a name that doesn't fit, delete an entry, add a late one, or change the running order, live during a show."
 }
