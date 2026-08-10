@@ -38,6 +38,7 @@
     <a href="#layer-ticker">Ticker</a>
     <a href="#layer-timer">Timer</a>
     <a href="#layer-slides">Slides</a>
+    <a href="#layer-bullets">Bullets (builds)</a>
     <a href="#animations">Animations</a>
     <a href="#align">Align &amp; nudge</a>
     <div class="grp">Scoreboards</div>
@@ -158,6 +159,29 @@
     <h2 id="layer-slides">Slides layer</h2>
     <p>For lyrics, scripture or bullet lists. Type your slides in the box — <b>one blank line between slides</b>. Within a slide, press Enter or type <code>//</code> for a line break, and start a line with <code>-</code> for a bullet. Advance with <b>First / Prev / Next / Blank</b>, or jump using the counter. Options: an optional <b>background panel</b> (colour, opacity, padding, radius) that stays put while the text changes, and a <b>Between slides</b> transition (fade or slide).</p>
 
+    <h2 id="layer-bullets">Bullets layer (builds)</h2>
+    <p>Reveal talking points one at a time, the way a presenter builds a PowerPoint slide — except live, on your stream, driven from a button. Add one with <b>＋ Bullets</b> and type your points, <b>one per line</b>. Blank lines are ignored.</p>
+    <h3>The four reveal styles</h3>
+    <p>All four use the same list; the <b>Reveal style</b> dropdown only changes how a point that <i>isn't</i> the current one is drawn:</p>
+    <ul>
+      <li><b>Build</b> — each new point appears beneath the last and everything stays at full strength. The classic PowerPoint build.</li>
+      <li><b>Fade</b> — earlier points stay on screen but dim back, so the eye lands on the newest one. This is the look you see when commentators are talking over a graphic.</li>
+      <li><b>Highlight</b> — every point is on screen from the start, all dimmed, and the one being discussed lights up. Good for an agenda or a running order.</li>
+      <li><b>Replace</b> — one point at a time in the same spot, each replacing the last.</li>
+    </ul>
+    <p>Because it's one layer and not four, you can switch style mid-show on a graphic you already built.</p>
+    <h3>Driving it</h3>
+    <p>In the builder, use <b>First / Prev / Next / All / Blank</b>. Once the graphic is saved to the <b>Show Library</b>, every preset that contains a bullet list grows a <b>Reveal</b> row with the same transport — that's what you use on air. The same commands are on the Control API and in the Companion module, so <b>Next point</b> can be a physical key. See <a href="#control-api">Stream Deck &amp; Companion</a>.</p>
+    <h3>Options worth knowing</h3>
+    <ul>
+      <li><b>Grow upward</b> instead of downward — a build sitting above a lower third should push up, not down into it.</li>
+      <li><b>Arrives</b> sets how each point comes in (fade, slide, pop) and how long it takes. <b>▶ Test</b> replays the whole build in the preview.</li>
+      <li><b>Marker</b>: dot, dash, arrow, tick, numbers, or none — with its own colour.</li>
+      <li><b>Dimmed at</b> controls how far back Fade and Highlight push the other points; Highlight also has its own colour and an optional size bump for the live point.</li>
+      <li><b>Start from blank each time it goes on air</b> (on by default). Without it, a graphic saved with everything showing comes back on air fully revealed and you'd have to blank it before every show. Turn it off if you want a static list.</li>
+      <li><b>CSV field</b> — a bullets layer can take its whole list from one spreadsheet cell. Separate the points with <code>//</code> inside the cell, and a "Talking points" column gives every guest their own build. See <a href="#csv">CSV mail-merge</a>.</li>
+    </ul>
+
     <h2 id="animations">Animations</h2>
     <p>Every layer has an independent <b>Animate ON</b> (how it comes on) and <b>Animate OFF</b> (how it leaves), each with its own <b>type</b>, <b>delay</b> and <b>duration</b>. Types include Fade, Slide (up/down/left/right), Fly-in from off-screen, Bounce, Pop and Spin.</p>
     <h3>Staggering</h3>
@@ -192,6 +216,7 @@
 
     <h2 id="library">Show Library &amp; Program output</h2>
     <p>The <b>Show Library</b> is your collection of saved graphics. Each has an on/off switch — flip several on and they appear <b>together</b> on the single <b>Program output</b>. Add that one URL to OBS/vMix and run your whole show from the Library, switching graphics live. Other buttons: <b>Edit Preset</b> (opens it back in the builder), <b>Rename</b>, <b>Delete</b>, and <b>All off</b> to clear the screen fast. Each graphic plays its own designed animations as it comes on and off.</p>
+    <p>A graphic containing <a href="#layer-bullets">bullets</a> or <a href="#layer-slides">slides</a> also gets a <b>Reveal</b> row — First / Prev / Next / All / Blank — so you can step a build while it's on air without going back to the builder. If one graphic holds more than one list, pick which one the buttons drive from the dropdown.</p>
 
     <h2 id="csv">CSV mail-merge (fill graphics from a spreadsheet)</h2>
     <p>Turn one graphic into many by feeding it a spreadsheet.</p>
@@ -200,6 +225,7 @@
       <li>On that graphic in the Library, click <b>Import CSV</b>. Your column headers match the field names.</li>
       <li>Each <b>row</b> becomes a ready-to-go version. Step through with <b>◀ ▶</b>, jump to anyone from the dropdown, and choose which column is the label with <b>Row by</b>.</li>
     </ol>
+    <p>A <a href="#layer-bullets">bullets</a> layer can take a CSV field too — put the whole list in one cell, separated by <code>//</code>, and each row brings its own set of talking points.</p>
     <h3>Smooth changes</h3>
     <p>Tick <b>animate change</b> so the graphic animates out and back in between entries, and set a <b>delay</b> (ms) so it isn't jarring — snappy for a roster, slower for a graceful feature reveal.</p>
 
@@ -263,6 +289,7 @@
     <h3>What you can control</h3>
     <ul>
       <li><b>Library presets by name</b> — on / off / toggle, and next / previous row for CSV graphics.</li>
+      <li><b>Bullet builds</b> — next / previous point, reveal all, back to blank, or jump straight to point 3. See <a href="#layer-bullets">Bullets</a>. The module ships ready-made Next / Back / All / Blank keys for every graphic that builds, with the count printed on the key.</li>
       <li><b>Presenter timer</b> — start / pause / reset / set (e.g. 5:00) / add time / on-air / off.</li>
       <li><b>A named scoreboard</b> — point +/− per team, next game, show / hide.</li>
       <li><b>Baseball / softball</b> — run per team, ball / strike / out, clear count, next half-inning, on / off.</li>
