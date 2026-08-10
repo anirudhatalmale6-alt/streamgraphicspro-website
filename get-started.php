@@ -73,7 +73,7 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
   <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
   <nav id="nv">
     <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
-    <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="faq.html">FAQ</a>
+    <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="companion.html">Companion</a><a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
   </nav>
 </div></header>
@@ -95,6 +95,10 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
     <p style="color:var(--muted);font-size:14.5px;line-height:1.65">
       New to it? The <a href="docs.html">quick guide</a> gets you a lower third on air in about two minutes, and there are
       <a href="tutorials.html">short videos</a> too. Questions, ideas, gripes — <a href="contact.html">tell me</a>. I read everything.
+    </p>
+    <p style="color:var(--muted);font-size:14.5px;line-height:1.65">
+      Running a <b>Stream Deck</b>? There's a free <a href="companion.html"><b>Bitfocus Companion module</b></a> — drag ready-made
+      buttons straight out of the Presets tab, with the live score and your bullet position printed on the keys.
     </p>
     <p style="color:var(--muted);font-size:13px">The link stays good for 7 days. Need it again later? Just come back to this page.</p>
   </div>
@@ -149,6 +153,6 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 </div></section>
 <?php endif; ?>
 
-<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="docs.html">Guide</a> · <a href="faq.html">FAQ</a> · <a href="tutorials.html">Videos</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
+<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="docs.html">Guide</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="tutorials.html">Videos</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
 </body>
 </html>

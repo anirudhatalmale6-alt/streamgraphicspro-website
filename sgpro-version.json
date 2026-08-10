@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Fix: a layer whose animation was set to None stayed on the output after Off Air. None now means an instant cut, on and off."
+  "notes": "Bullets in Replace mode now swap cleanly in one spot instead of jumping, and a layer set to animation None no longer sticks on the output after Off Air."
 }

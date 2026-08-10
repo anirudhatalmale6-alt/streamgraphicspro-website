@@ -13,7 +13,7 @@
   <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
   <nav id="nv">
     <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
-    <a href="tutorials.html">Videos</a><a href="docs.html" class="on">Guide</a><a href="faq.html">FAQ</a>
+    <a href="tutorials.html">Videos</a><a href="docs.html" class="on">Guide</a><a href="companion.html">Companion</a><a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
   </nav>
 </div></header>
@@ -169,7 +169,8 @@
       <li><b>Highlight</b> — every point is on screen from the start, all dimmed, and the one being discussed lights up. Good for an agenda or a running order.</li>
       <li><b>Replace</b> — one point at a time in the same spot, each replacing the last.</li>
     </ul>
-    <p>Because it's one layer and not four, you can switch style mid-show on a graphic you already built.</p>
+    <figure style="margin:16px 0 20px"><img src="img/bullets-modes-demo.gif?v=1" alt="The same four talking points revealed four different ways, side by side" loading="lazy" style="width:100%;max-width:900px;height:auto;border-radius:12px;border:1px solid var(--line);display:block"><figcaption style="font-size:13px;opacity:.72;margin-top:7px">The same four points, the same list — only the Reveal style dropdown is different.</figcaption></figure>
+        <p>Because it's one layer and not four, you can switch style mid-show on a graphic you already built.</p>
     <h3>Driving it</h3>
     <p>In the builder, use <b>First / Prev / Next / All / Blank</b>. Once the graphic is saved to the <b>Show Library</b>, every preset that contains a bullet list grows a <b>Reveal</b> row with the same transport — that's what you use on air. The same commands are on the Control API and in the Companion module, so <b>Next point</b> can be a physical key. See <a href="#control-api">Stream Deck &amp; Companion</a>.</p>
     <h3>Options worth knowing</h3>
@@ -230,6 +231,8 @@
     <p>Tick <b>animate change</b> so the graphic animates out and back in between entries, and set a <b>delay</b> (ms) so it isn't jarring — snappy for a roster, slower for a graceful feature reveal.</p>
 
     <h3>Fixing the spreadsheet mid-show</h3>
+    <figure style="margin:16px 0 20px"><img src="img/csv-editor-demo.gif?v=1" alt="Putting a different entry on air, retyping a title, and adding a new entry, with the graphic updating live" loading="lazy" style="width:100%;max-width:900px;height:auto;border-radius:12px;border:1px solid var(--line);display:block"><figcaption style="font-size:13px;opacity:.72;margin-top:7px">Switch the entry on air, retype a title, add someone who was never in the spreadsheet — all while it's live.</figcaption></figure>
+    
     <p>Rosters are wrong. A name runs off the end of the lower third, somebody scratches an hour before warm-ups, a late entry turns up at the table. You should not have to go back to Excel, re-export and re-import while the event is running — so you don't.</p>
     <p>Click <b>✎ Edit rows</b> on any graphic that has a spreadsheet attached. You get the whole sheet as a table:</p>
     <ul>
@@ -286,6 +289,10 @@
     </ul>
     <h3>Without the module — one URL per button</h3>
     <p>Any Stream Deck, automation tool or Companion install without the module can still drive everything with plain web addresses. In Companion, add an action of <b>Generic HTTP Request</b>, set the method to <b>GET</b>, and paste a URL from the Control API page. Press the button — the graphic reacts instantly.</p>
+    <div class="note" style="border-left:4px solid #f4a63c">
+      <p style="margin:0 0 6px"><b>Stream Deck: tick "Access in background", or you'll collect browser tabs</b></p>
+      <p style="margin:0">The Stream Deck app's built-in <b>Website</b> action opens a browser tab on every press, so an hour of shows leaves you with a row of tabs showing <code>{"ok":true}</code>. In that action's settings, tick <b>Access in background</b> (older versions say "Open in background"). The key then sends the command silently with no browser involved. The graphic was reacting correctly all along — the tabs are just the Stream Deck showing you the reply.</p>
+    </div>
     <h3>What you can control</h3>
     <ul>
       <li><b>Library presets by name</b> — on / off / toggle, and next / previous row for CSV graphics.</li>
@@ -331,6 +338,6 @@
   </div>
 </div></section>
 
-<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
+<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
 </body>
 </html>

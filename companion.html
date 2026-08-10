@@ -26,7 +26,7 @@
   <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
   <nav id="nv">
     <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
-    <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="faq.html">FAQ</a>
+    <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="companion.html" class="on">Companion</a><a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
   </nav>
 </div></header>
@@ -81,10 +81,15 @@
   <h3 style="margin-top:34px">Not using Companion?</h3>
   <p>Everything the module does is also available as plain web addresses — one URL per button. That's the way to drive StreamGraphics from a Stream Deck on its own, or from any other automation. The full list is on the Control API page inside the app, and in the <a href="docs.html#control-api">guide</a>.</p>
 
+  <div class="note" style="margin-top:14px;border-left:4px solid #f4a63c">
+    <p style="margin:0 0 6px"><b>Stream Deck on its own: tick "Access in background"</b></p>
+    <p style="margin:0">The Stream Deck app's built-in <b>Website</b> action opens a browser tab every single time you press the key, so a show leaves you with fifty tabs of <code class="k">{"ok":true}</code>. In the action's settings there's a checkbox — <b>Access in background</b> (older versions call it "Open in background"). Tick it and the key fires the command silently, with no browser at all. Nothing to change in StreamGraphics. The Companion module never had this problem, which is one more reason to use it if you have Companion.</p>
+  </div>
+
   <h3 style="margin-top:34px">Source code</h3>
   <p>The module is open source under the MIT licence. You can read it, fork it, or build it yourself: <a href="https://github.com/anirudhatalmale6-alt/companion-module-streamgraphics-pro" target="_blank" rel="noopener">the repository is on GitHub</a>. Found a bug or want an action that isn't there? <a href="contact.html">Get in touch</a>.</p>
 </div></section>
 
-<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
+<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
 </body>
 </html>
