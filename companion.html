@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitfocus Companion module — StreamGraphics Pro</title>
+<meta name="description" content="Free Bitfocus Companion module for StreamGraphics Pro. Drag ready-made buttons out of the Presets tab — graphics on and off air, scoreboards, timers, with live feedback on the keys.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef6a4c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+<style>
+  .steps{counter-reset:st;list-style:none;padding:0;margin:18px 0 0}
+  .steps li{counter-increment:st;position:relative;padding:0 0 18px 46px;margin:0}
+  .steps li::before{content:counter(st);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:50%;
+    background:var(--accent,#ef6a4c);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .dlrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:14px 0 6px}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+  @media(max-width:700px){.grid2{grid-template-columns:minmax(0,1fr)}}
+  .card2{border:1px solid rgba(128,128,128,.25);border-radius:12px;padding:16px 18px}
+  .card2 h4{margin:0 0 6px}
+  code.k{padding:2px 6px;border-radius:5px;background:rgba(128,128,128,.14);font-size:.94em}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="logomark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="flex:none"><defs><linearGradient id="sgm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4a63c"/><stop offset="1" stop-color="#ef6a4c"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#sgm)"/><rect x="6" y="11.5" width="13.5" height="9" rx="2.2" fill="#fff"/><path d="M20.5 13.8 L26 10.5 L26 21.5 L20.5 18.2 Z" fill="#fff"/></svg> StreamGraphics Pro</a>
+  <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
+  <nav id="nv">
+    <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
+    <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap">
+  <div class="center">
+    <h2>The Bitfocus Companion module</h2>
+    <p class="lead" style="max-width:680px;margin:0 auto">Run your whole show from a Stream Deck. The module is free, and it works with the free version of the app too — no licence needed.</p>
+  </div>
+
+  <div class="dlrow" style="justify-content:center">
+    <a class="btn" href="files/streamgraphics-pro-companion-module.tgz">Download the module</a>
+    <a class="btn alt" href="docs.html#control-api">Setup guide</a>
+  </div>
+  <p class="center" style="font-size:13px;opacity:.75;margin-top:2px">For Bitfocus Companion 3.x · MIT licensed · works with the free and paid versions alike</p>
+
+  <div class="grid2">
+    <div class="card2">
+      <h4>Buttons that tell you the truth</h4>
+      <p style="margin:0">A key turns red while that graphic is actually on the Program output — not while you last pressed it. Worth a lot when there are twenty buttons in front of you.</p>
+    </div>
+    <div class="card2">
+      <h4>Live numbers on the keys</h4>
+      <p style="margin:0">The real score, team names, which game is up, the presenter clock ticking down, the baseball count — printed on the button itself.</p>
+    </div>
+    <div class="card2">
+      <h4>It builds its own buttons</h4>
+      <p style="margin:0">Open the Presets tab and drag them out. The module reads your actual show, so five courts gives you five ready-made scoring pages.</p>
+    </div>
+    <div class="card2">
+      <h4>It follows your show</h4>
+      <p style="margin:0">Everything is addressed by the name you gave it in the app. Rename a court, add one, or rebuild the show file — your buttons keep working.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:38px">Installing it</h3>
+  <ol class="steps">
+    <li><b>Download the module</b> using the button above. You'll get a <code class="k">.tgz</code> file — hand it over as it is, don't unzip it first.</li>
+    <li><b>In Companion, open the Modules page</b> and use the option to import a module package. Pick the file you just downloaded.</li>
+    <li><b>Add a connection</b> and search for StreamGraphics Pro. Fill in two things: the address of the show computer (<code class="k">127.0.0.1</code> if Companion is on that same machine, otherwise the address the app prints on its home page) and the port, <code class="k">4000</code> unless you changed it.</li>
+    <li><b>Check it goes green</b>, then open the <b>Presets</b> tab and drag buttons onto your pages. Don't build them by hand — the generated ones already have their feedback and variables wired up.</li>
+  </ol>
+
+  <div class="note" style="margin-top:22px">
+    <p style="margin:0"><b>StreamGraphics Pro has to be running</b> before the connection can go green. If it stays red, check the app is open and that Windows didn't block network access the first time it asked.</p>
+  </div>
+
+  <h3 style="margin-top:34px">Not using Companion?</h3>
+  <p>Everything the module does is also available as plain web addresses — one URL per button. That's the way to drive StreamGraphics from a Stream Deck on its own, or from any other automation. The full list is on the Control API page inside the app, and in the <a href="docs.html#control-api">guide</a>.</p>
+
+  <h3 style="margin-top:34px">Source code</h3>
+  <p>The module is open source under the MIT licence. You can read it, fork it, or build it yourself: <a href="https://github.com/anirudhatalmale6-alt/companion-module-streamgraphics-pro" target="_blank" rel="noopener">the repository is on GitHub</a>. Found a bug or want an action that isn't there? <a href="contact.html">Get in touch</a>.</p>
+</div></section>
+
+<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="index.html">Home</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
+</body>
+</html>
