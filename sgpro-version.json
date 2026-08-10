@@ -1,5 +1,5 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.6",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "New Bullets layer — reveal talking points one at a time, four ways, and step the build from the Show Library or a Stream Deck."
+  "notes": "Fix: a layer whose animation was set to None stayed on the output after Off Air. None now means an instant cut, on and off."
 }
