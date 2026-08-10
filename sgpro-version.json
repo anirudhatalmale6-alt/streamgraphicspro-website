@@ -1,5 +1,5 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.8",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Bullets in Replace mode now swap cleanly in one spot instead of jumping, and a layer set to animation None no longer sticks on the output after Off Air."
+  "notes": "Pin StreamGraphics Pro to your taskbar \u2014 the app now ships a proper launcher icon. Control panels also behave in a narrow window."
 }
