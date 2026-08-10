@@ -225,12 +225,18 @@
     <h2 id="control-api">Control API — Stream Deck &amp; Bitfocus Companion</h2>
     <p>StreamGraphics can be driven from a <b>Stream Deck</b>, <b>Bitfocus Companion</b>, or any automation — one web address per button. Everything is addressed by the <b>name</b> you gave it in the app, so a button keeps working no matter how you rearrange your show.</p>
     <p>Open <b>Control API</b> from the home screen (or go to <code>/control-api</code>). It lists every command with a ready-to-paste URL, a <b>Copy</b> and a <b>Test</b> button, and a box where you set the show computer's network address so the URLs are ready to use from another machine. It even shows your live preset and scoreboard names.</p>
-    <h3>Using it in Bitfocus Companion</h3>
-    <ol>
-      <li>Add a button, then an action: <b>Generic HTTP Request</b>.</li>
-      <li>Set the method to <b>GET</b> and paste a URL from the Control API page.</li>
-      <li>Press the button — the graphic reacts instantly.</li>
-    </ol>
+    <h3>Bitfocus Companion — use the module</h3>
+    <p>There is a native <b>StreamGraphics Pro module</b> for Companion, and it is by far the easier route. Add it as a connection, put in the show computer's address and port <code>4000</code>, and you're done.</p>
+    <p>Then open Companion's <b>Presets</b> tab and <b>drag buttons out</b> — don't build them by hand. The module reads your actual show and generates buttons that are already wired up: a toggle for every saved graphic, a full scoring set for every scoreboard you've made, plus the presenter timer and the baseball board. Run five courts and you get five ready-made scoring pages.</p>
+    <p>What the module gives you that plain URLs can't:</p>
+    <ul>
+      <li><b>Button colours that mean something</b> — a graphic's button turns red while it's actually on the Program output, not just when you last pressed it. Same for scoreboards and the timer.</li>
+      <li><b>Live numbers on the keys</b> — the real score, the team names, which spreadsheet row is showing, the presenter clock ticking down, the baseball count.</li>
+      <li><b>A connection light</b> — park it on a spare key and you'll know the link is healthy <i>before</i> the first serve, not during it.</li>
+      <li><b>It follows your show</b> — rename a court or add one and the buttons and variables update on their own.</li>
+    </ul>
+    <h3>Without the module — one URL per button</h3>
+    <p>Any Stream Deck, automation tool or Companion install without the module can still drive everything with plain web addresses. In Companion, add an action of <b>Generic HTTP Request</b>, set the method to <b>GET</b>, and paste a URL from the Control API page. Press the button — the graphic reacts instantly.</p>
     <h3>What you can control</h3>
     <ul>
       <li><b>Library presets by name</b> — on / off / toggle, and next / previous row for CSV graphics.</li>
@@ -238,6 +244,7 @@
       <li><b>A named scoreboard</b> — point +/− per team, next game, show / hide.</li>
       <li><b>Baseball / softball</b> — run per team, ball / strike / out, clear count, next half-inning, on / off.</li>
     </ul>
+    <p>The module and the URLs cover the same ground, so nothing is off-limits either way.</p>
     <p>Example — a Stream Deck button becomes literally one URL:</p>
     <p><code>http://YOUR-PC:4000/api/preset/toggle?name=Lower Third - John</code></p>
     <p><b>Remote control</b> — driving all of this from another location over the internet — is coming as an optional add-on that adds a small always-on relay, so there's no networking setup needed at the venue.</p>
