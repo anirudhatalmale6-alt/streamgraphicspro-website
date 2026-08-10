@@ -1,0 +1,76 @@
+Email-gated free download — what to upload, and in what order
+=============================================================
+
+Everything below goes in public_html (the same folder index.html is in).
+It is all plain PHP, which SiteGround runs out of the box. Nothing to install.
+
+
+STEP 1 — upload these files
+---------------------------
+  sgpro-config.php          <- the only file you edit
+  sgpro-lib.php
+  get-started.php           <- the new download page (the form)
+  dl.php                    <- hands out the actual installer
+  leads.php                 <- your list of everyone who downloaded
+  download/.htaccess        <- blocks people linking straight to the .exe
+  sgpro-leads/.htaccess     <- keeps the list private
+  sgpro-leads/index.html    <- (empty file, extra safety)
+
+And re-upload these, which now point at the new page:
+  index.html  pricing.html  docs.html  faq.html  tutorials.html
+  contact.html  eula.html  privacy.html  terms.html
+  sgpro-version.json
+
+
+STEP 2 — edit sgpro-config.php (two lines)
+------------------------------------------
+  SGPRO_SECRET           any long random string, 30+ characters. Mash the keyboard.
+  SGPRO_LEADS_PASSWORD   the password you'll type to see your list.
+
+Leave everything else as it is.
+
+
+STEP 3 — put the installer where it already goes
+------------------------------------------------
+  public_html/download/StreamGraphicsProSetup.exe
+
+Same place as before. Nothing changes about how you upload a new build —
+sign it, drop it in download/, done.
+
+
+STEP 4 — check it
+-----------------
+  1. Go to streamgraphicspro.com/get-started.php — you should see the form.
+  2. Fill it in with your own address. You get the download button straight
+     away, and an e-mail with the same link.
+  3. Go to streamgraphicspro.com/leads.php, enter your password — you're there.
+  4. Try streamgraphicspro.com/download/StreamGraphicsProSetup.exe directly.
+     It should be blocked. That's the point.
+
+
+How it works
+------------
+The Download buttons all now go to get-started.php instead of straight at the
+file. Someone fills in name + e-mail (plus a few optional questions), and they
+get the installer immediately — no waiting on an e-mail, no confirmation step.
+Making people wait costs you downloads, so the link appears on screen right away
+AND lands in their inbox so they can install on another machine.
+
+The link is signed and lasts 7 days. If it expires they just fill the form again,
+which is fine — you get the second data point.
+
+Direct links to the .exe are blocked, so the form is the only public way in.
+The one exception is the in-app update check: already-installed copies fetch
+dl.php?u=1, which is deliberately open. Existing users must never be made to
+fill in a form to get an update.
+
+leads.php shows the list newest-first with a count for today and the last 7 days,
+and Export CSV drops straight into Excel, Google Sheets or Mailchimp.
+
+
+What I'd add next, when you want it
+-----------------------------------
+- A short "welcome" e-mail sequence (day 3, day 10) rather than one e-mail.
+- A checkbox on the form to request a template pack, so you know what to build.
+- If e-mails go to spam: SiteGround's own SMTP or Brevo instead of PHP mail().
+  Worth doing once you're sending real volume.

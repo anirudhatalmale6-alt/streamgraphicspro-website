@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
-  "url": "https://streamgraphicspro.com/download/StreamGraphicsProSetup.exe",
-  "notes": "Production release. Output and control windows auto-reload after an update."
+  "version": "1.0.2",
+  "url": "https://streamgraphicspro.com/dl.php?u=1",
+  "notes": "Builder no longer runs off the edge in a half-width window, and the between-slides animation now plays in the builder with an adjustable speed."
 }
