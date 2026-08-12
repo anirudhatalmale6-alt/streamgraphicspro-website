@@ -8,17 +8,127 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef6a4c'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="site.css">
 <style>
-  .hero-grid{display:flex;gap:44px;align-items:center;text-align:left;max-width:1180px}
-  .hero-copy{flex:1;min-width:0}
-  .hero-art{flex:1.18;min-width:0}
-  @media(min-width:861px){.hero-art{margin-top:100px}}  /* drop the image down so it sits level with the body text */
-  .hero-art img{width:100%;height:auto;border-radius:16px;box-shadow:0 26px 64px rgba(20,20,40,.28);border:1px solid var(--line);display:block}
-  .hero-copy p.sub{margin-left:0;margin-right:0;max-width:none}
-  .hero-copy .cta{justify-content:flex-start}
-  .bigfor{margin:2px 0 22px;font-size:clamp(19px,2.6vw,30px);font-weight:900;letter-spacing:.01em;line-height:1.12;
-    background:linear-gradient(90deg,#ef6a4c,#f4a63c);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .bigfor .amp{color:var(--muted);-webkit-text-fill-color:var(--muted);font-weight:700;font-size:.7em}
-  @media(max-width:860px){.hero-grid{flex-direction:column;text-align:center}.hero-copy .cta{justify-content:center}.hero-art{width:100%}}
+  /* ============================ HERO ============================
+   * Dark, so the graphics in it read as graphics-over-video rather than pictures on a page.
+   * Everything below the hero stays warm and light — the switchbar at the bottom is the bridge.
+   *
+   * The palette is the SITE's coral/amber, not a new colour. A dark panel makes coral brighter
+   * than a cream one does, so the brand gets louder here, not quieter — and the logo, the
+   * buttons and every other page still match. */
+  .hero{
+    position:relative; padding:0; text-align:left; overflow:hidden;
+    background:var(--ink); color:#fff;
+  }
+  /* Ambient light. Two soft pools rather than a flat fill, so the panel has some depth behind
+   * the monitors instead of looking like a black rectangle. Pointer-events off — these sit
+   * above the background but must never eat a click meant for a button. */
+  .hero .glow,.hero .glow2,.hero .grain{position:absolute;pointer-events:none}
+  .hero .glow{top:-240px;right:-180px;width:860px;height:860px;z-index:0;
+    background:radial-gradient(circle,rgba(239,106,76,.30) 0%,rgba(239,106,76,.10) 38%,rgba(239,106,76,0) 70%)}
+  .hero .glow2{bottom:-260px;left:-220px;width:740px;height:740px;z-index:0;
+    background:radial-gradient(circle,rgba(244,166,60,.18) 0%,rgba(244,166,60,0) 65%)}
+  /* A little film grain. Stops the big flat dark area from banding on cheap monitors. */
+  .hero .grain{inset:0;z-index:1;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* Copy column is the wider one. The site runs on the system UI font, which is a good deal
+   * wider than the display face in the mock-up, so the headline needs the extra room to keep a
+   * big type size without collapsing into four short lines. */
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;
+    align-items:center;max-width:1180px;padding-top:70px;padding-bottom:44px}
+  .hero-grid>*{min-width:0}
+
+  .hero .pill{background:rgba(239,106,76,.14);border:1px solid rgba(239,106,76,.45);color:#ffb9a4;
+    box-shadow:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:22px}
+  .hero .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:sgpulse 1.4s infinite}
+  @keyframes sgpulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* No hard <br> in the headline. text-wrap:balance evens the lines out itself, and at a
+   * hand-placed break the last line strands a single word the moment the font or the window
+   * changes. Browsers without balance just wrap normally, which is fine. */
+  .hero h1{font-size:clamp(32px,3.9vw,48px);line-height:1.06;margin:0 0 20px;letter-spacing:-.015em;
+    color:#fff;text-wrap:balance}
+  .hero h1 .hl{background:linear-gradient(100deg,#fff 0%,#ffd9c9 38%,var(--accent) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:17.5px;line-height:1.62;color:#c9ccd4;max-width:530px;margin:0 0 12px}
+  .hero .byline{font-weight:700;color:var(--accent2);font-size:15px;margin:0 0 26px}
+  .hero .cta{justify-content:flex-start;margin-bottom:24px}
+  .hero .btn.alt{background:transparent;color:#fff;border:1px solid #3a3f4c}
+  .hero .btn.alt:hover{border-color:#5f6572;background:rgba(255,255,255,.04)}
+  .hero .btn.alt .play{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3ddc97;
+    box-shadow:0 0 0 3px rgba(61,220,151,.25);margin-right:8px;vertical-align:middle}
+  .trust{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:#8b92a0}
+  .trust span{display:flex;align-items:center;gap:6px}
+  .trust .tick{color:#3ddc97;font-weight:800}
+
+  /* ---- capability ticker ----
+   * Full-bleed across the whole hero, not just the text column. The mock-up had it inside the
+   * column, which chopped a word in half at the column edge; running it wall to wall also
+   * reads far more like the real thing.
+   *
+   * THREE identical groups, sliding exactly -33.3333% — one group's width. At every moment two
+   * whole groups are still on the strip, so it is always wider than the screen and the loop
+   * never opens a gap at the right-hand edge. Two groups was not enough: one group is about
+   * 2100px, and on a wide monitor the strip would run out mid-cycle and show a bare patch.
+   * If you edit the list, edit ALL THREE copies or the loop will visibly jump. */
+  .ticker-wrap{position:relative;z-index:2;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);
+    overflow:hidden;padding:13px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .ticker{display:flex;width:max-content;animation:sgscroll 46s linear infinite}
+  .tk{display:flex;flex:none;align-items:center;white-space:nowrap}
+  .ticker b{font:600 12px/1 ui-monospace,'Cascadia Mono','Consolas',monospace;letter-spacing:.14em;color:#c9ccd4}
+  .ticker i{font-style:normal;color:var(--accent);margin:0 26px;font-size:12px}
+  @keyframes sgscroll{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
+
+  /* ---- fanned monitor stack ----
+   * Three outputs at once instead of one still image, with tally lights. This is the bit that
+   * says "broadcast" to the people buying it. Absolutely positioned inside a fixed-height box,
+   * so the heights below are tied to the widths — change one, check the others. */
+  .stack{position:relative;height:470px;z-index:2}
+  .mon{position:absolute;background:var(--panel-d);border:1px solid var(--line-d);border-radius:9px;
+    padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .mon img{width:100%;display:block;border-radius:4px;background:#000}
+  .mon-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+  .mon-tag{font:600 9.5px/1 ui-monospace,'Cascadia Mono','Consolas',monospace;letter-spacing:.12em;color:#8b92a0}
+  .tally{display:flex;align-items:center;gap:5px;color:#fff;font:800 9.5px/1 ui-monospace,'Cascadia Mono','Consolas',monospace;
+    letter-spacing:.08em;padding:4px 7px;border-radius:3px}
+  .tally.live{background:#e0392f}
+  .tally.pgm{background:var(--panel2-d);color:#8b92a0;border:1px solid var(--line-d)}
+  .tally .pulse{width:5px;height:5px;border-radius:50%;background:#fff;animation:sgpulse 1.4s infinite}
+  .mon-back{width:286px;right:0;top:4px;transform:rotate(7deg);opacity:.88;z-index:1}
+  .mon-mid{width:286px;left:0;top:56px;transform:rotate(-6deg);opacity:.94;z-index:2}
+  /* Sits low and right so the two behind it still show their own graphic. If you widen this
+   * one, drop its top as well or it swallows the middle screen entirely. */
+  .mon-front{width:360px;left:104px;top:196px;z-index:3;border-color:rgba(239,106,76,.42)}
+
+  /* ---- the bridge into the light part of the page ---- */
+  .switchbar{position:relative;z-index:2;background:var(--panel2-d);border-top:1px solid var(--line-d);padding:19px 0}
+  .switchbar .wrap{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+  .switchbar .label{color:#8b92a0;font:600 11px/1 ui-monospace,'Cascadia Mono','Consolas',monospace;letter-spacing:.1em;margin-right:4px}
+  .chip{border:1px solid var(--line-d);color:#dfe1e6;font-size:13px;font-weight:700;padding:7px 14px;border-radius:6px}
+
+  @media(max-width:940px){
+    .hero-grid{grid-template-columns:1fr;padding-top:52px}
+    .stack{height:400px}
+    .mon-back{width:232px}.mon-mid{width:242px}.mon-front{width:300px;left:40px;top:152px}
+  }
+  @media(max-width:560px){
+    .stack{height:330px}
+    .mon-back{display:none}
+    .mon-mid{width:214px;top:16px;left:0}
+    .mon-front{width:258px;left:58px;top:104px}
+    /* Everything in the hero stays left-aligned on phones. Centring just the buttons under
+     * left-aligned text reads as a mistake. */
+    .hero .cta{justify-content:flex-start}
+  }
+  /* Respect the OS "reduce motion" switch. A marquee is exactly the kind of thing that makes
+   * some people feel ill, and it costs nothing to hold it still for them. */
+  @media(prefers-reduced-motion:reduce){
+    .ticker{animation:none}
+    .hero .pill .dot,.tally .pulse{animation:none}
+  }
   #in-action{padding-top:6px}
   #in-action .wrap{max-width:1280px}
   .showrow{display:flex;gap:52px;align-items:center;margin:0 0 74px}
@@ -47,20 +157,58 @@
   </nav>
 </div></header>
 
-<div class="hero"><div class="wrap hero-grid">
-  <div class="hero-copy">
-    <span class="pill">Live broadcast graphics</span>
-    <h1>Beautiful live graphics.<br>Fast, simple &amp; friendly.</h1>
-    <div class="bigfor">MADE FOR OBS <span class="amp">·</span> vMIX <span class="amp">·</span> ATEM <span class="amp">·</span> SWITCHERS</div>
-    <p class="sub">Lower thirds, scoreboards, images, countdowns, timers, slides and score bugs — designed your way and controlled from any device on your network. The entire app lives on your own computer, so there's nothing to worry about. Buy once, own forever. No monthly fees. No expiration date. Just clean graphics that make you look great.</p>
-    <p class="sub" style="font-weight:700;color:var(--accent-dk);margin-top:-6px">Built by video professionals, for video professionals.</p>
-    <div class="cta">
-      <a class="btn" href="get-started.php">Try it free</a>
-      <a class="btn alt" href="tutorials.html">Watch a quick video</a>
+<div class="hero">
+  <div class="glow"></div><div class="glow2"></div><div class="grain"></div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><span class="dot"></span>Live broadcast graphics</span>
+      <h1>Graphics that go <span class="hl">on air</span>, not just on screen.</h1>
+      <p class="sub">Lower thirds, scoreboards, timers, tickers and slides — designed your way and flipped live from any device on your network. Runs on your own computer. Buy once, own forever, no monthly fees.</p>
+      <p class="byline">Built by video professionals, for video professionals.</p>
+      <div class="cta">
+        <a class="btn" href="get-started.php">Try it free</a>
+        <a class="btn alt" href="tutorials.html"><span class="play"></span>Watch a quick video</a>
+      </div>
+      <div class="trust">
+        <span><span class="tick">✓</span>No subscription</span>
+        <span><span class="tick">✓</span>Runs offline</span>
+        <span><span class="tick">✓</span>Buy once, own forever</span>
+      </div>
+    </div>
+
+    <!-- Three outputs at once, with tally lights, instead of one flat still. -->
+    <div class="stack">
+      <div class="mon mon-back">
+        <div class="mon-bar"><span class="mon-tag">AUX 2</span><span class="tally pgm">PREVIEW</span></div>
+        <img src="img/lower-thirds.png?v=9" alt="Several lower third styles built in StreamGraphics Pro" loading="lazy">
+      </div>
+      <div class="mon mon-mid">
+        <div class="mon-bar"><span class="mon-tag">AUX 1</span><span class="tally pgm">PREVIEW</span></div>
+        <img src="img/timer.gif?v=9" alt="Countdown, count-up and clock timers running" loading="lazy">
+      </div>
+      <div class="mon mon-front">
+        <div class="mon-bar"><span class="mon-tag">PGM OUT</span><span class="tally live"><span class="pulse"></span>ON AIR</span></div>
+        <img src="img/hero.png?v=9" alt="A StreamGraphics Pro beach volleyball scoreboard keyed over live footage" fetchpriority="high">
+      </div>
     </div>
   </div>
-  <div class="hero-art"><img src="img/hero.png?v=9" alt="A StreamGraphics Pro beach volleyball scoreboard keyed over live footage" fetchpriority="high"></div>
-</div></div>
+
+  <!-- Three IDENTICAL groups. The animation slides one group's width. Edit all three. -->
+  <div class="ticker-wrap"><div class="ticker">
+    <span class="tk"><b>LOWER THIRDS</b><i>/</i><b>SCOREBOARDS</b><i>/</i><b>TIMERS &amp; CLOCKS</b><i>/</i><b>TICKERS</b><i>/</i><b>SLIDES</b><i>/</i><b>SCORE BUGS</b><i>/</i><b>BULLET BUILDS</b><i>/</i><b>SPREADSHEETS</b><i>/</i><b>COUNTDOWNS</b><i>/</i><b>SPEAKER TIMER</b><i>/</i><b>IMAGES &amp; LOGOS</b><i>/</i><b>CHROMA KEY</b><i>/</i><b>STREAM DECK</b><i>/</i></span>
+    <span class="tk"><b>LOWER THIRDS</b><i>/</i><b>SCOREBOARDS</b><i>/</i><b>TIMERS &amp; CLOCKS</b><i>/</i><b>TICKERS</b><i>/</i><b>SLIDES</b><i>/</i><b>SCORE BUGS</b><i>/</i><b>BULLET BUILDS</b><i>/</i><b>SPREADSHEETS</b><i>/</i><b>COUNTDOWNS</b><i>/</i><b>SPEAKER TIMER</b><i>/</i><b>IMAGES &amp; LOGOS</b><i>/</i><b>CHROMA KEY</b><i>/</i><b>STREAM DECK</b><i>/</i></span>
+    <span class="tk"><b>LOWER THIRDS</b><i>/</i><b>SCOREBOARDS</b><i>/</i><b>TIMERS &amp; CLOCKS</b><i>/</i><b>TICKERS</b><i>/</i><b>SLIDES</b><i>/</i><b>SCORE BUGS</b><i>/</i><b>BULLET BUILDS</b><i>/</i><b>SPREADSHEETS</b><i>/</i><b>COUNTDOWNS</b><i>/</i><b>SPEAKER TIMER</b><i>/</i><b>IMAGES &amp; LOGOS</b><i>/</i><b>CHROMA KEY</b><i>/</i><b>STREAM DECK</b><i>/</i></span>
+  </div></div>
+
+  <div class="switchbar"><div class="wrap">
+    <span class="label">BUILT FOR</span>
+    <span class="chip">OBS</span>
+    <span class="chip">vMix</span>
+    <span class="chip">ATEM</span>
+    <span class="chip">+ any hardware switcher</span>
+  </div></div>
+</div>
 
 <section id="features"><div class="wrap">
   <div class="center"><h2>Titles and Overlays Your Way, Easy &amp; Fast!</h2><p class="lead">One incredible tool for your whole show.</p></div>

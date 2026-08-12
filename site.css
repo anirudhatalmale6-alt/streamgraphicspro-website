@@ -10,6 +10,13 @@
   --accent:#ef6a4c;        /* friendly warm coral */
   --accent-dk:#d9532f;
   --accent2:#f4a63c;       /* warm amber */
+  /* Dark surfaces. The nav and the home-page hero sit on these; the rest of the site stays
+   * warm and light. Slightly blue-black rather than brown-black, so the coral above reads as
+   * coral and not as rust. */
+  --ink:#101319;
+  --panel-d:#191d26;
+  --panel2-d:#1f242f;
+  --line-d:#2b3240;
   --radius:16px;
   --shadow:0 10px 30px rgba(60,40,20,.06);
 }
@@ -24,17 +31,20 @@ a:hover{text-decoration:underline}
 .btn.alt{background:#fff;color:var(--txt);border:1.5px solid var(--line);box-shadow:none}
 .btn.alt:hover{border-color:var(--accent)}
 
-header.nav{position:sticky;top:0;z-index:50;background:rgba(253,251,247,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+/* The bar is dark on EVERY page, not just the home page. It has to be: the home hero is dark
+ * now, and a light bar sitting on it leaves a hard seam right under the logo. Doing it here
+ * rather than in index.html also keeps the whole site looking like one site. */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(16,19,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-d)}
 header.nav .wrap{display:flex;align-items:center;gap:18px;height:64px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:var(--txt)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:#fff}
 .brand:hover{text-decoration:none}
 .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--accent)}
 header.nav nav{margin-left:auto;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
-header.nav nav a{color:var(--muted);font-weight:600;font-size:14px}
-header.nav nav a:hover,header.nav nav a.on{color:var(--txt);text-decoration:none}
+header.nav nav a{color:#98a0ae;font-weight:600;font-size:14px}
+header.nav nav a:hover,header.nav nav a.on{color:#fff;text-decoration:none}
 .navcta{background:var(--accent);color:#fff !important;padding:9px 16px;border-radius:999px;font-weight:800}
 .navcta:hover{background:var(--accent-dk)}
-.menubtn{display:none;margin-left:auto;background:#fff;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer}
+.menubtn{display:none;margin-left:auto;background:var(--panel2-d);border:1px solid var(--line-d);color:#fff;border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer}
 
 .hero{padding:80px 0 60px;text-align:center;background:radial-gradient(1100px 460px at 50% -8%,rgba(244,166,60,.20),transparent 62%),radial-gradient(900px 420px at 80% 0%,rgba(239,106,76,.14),transparent 60%)}
 .hero h1{font-size:clamp(34px,6vw,58px);line-height:1.06;margin:0 0 16px;letter-spacing:-.02em}
@@ -115,4 +125,4 @@ details p{color:var(--muted);margin:0 0 14px}
 footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px;background:var(--panel2)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{color:var(--muted)}
-@media(max-width:720px){header.nav nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:12px 20px}header.nav nav.open{display:flex}.menubtn{display:block}}
+@media(max-width:720px){header.nav nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--line-d);flex-direction:column;padding:12px 20px}header.nav nav.open{display:flex}.menubtn{display:block}}
