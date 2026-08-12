@@ -34,7 +34,19 @@ a:hover{text-decoration:underline}
 /* The bar is dark on EVERY page, not just the home page. It has to be: the home hero is dark
  * now, and a light bar sitting on it leaves a hard seam right under the logo. Doing it here
  * rather than in index.html also keeps the whole site looking like one site. */
-header.nav{position:sticky;top:0;z-index:50;background:rgba(16,19,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-d)}
+/* SOLID, not translucent, and no bottom border. Both of those were leaving a visible lighter
+ * band across the top of the home page.
+ *
+ * The bar used to be rgba(16,19,25,.92) over a backdrop blur. What sits behind it at the top of
+ * the document is the BODY, which is cream - so 8% cream mixed into it and the bar painted at
+ * rgb(35,38,43) while the hero directly underneath painted at rgb(20,23,29). 0.92*16 + 0.08*253
+ * = 34.9, exactly what was measured on the live site. Fifteen levels lighter, right across the
+ * full width, reading as a grey stripe under the logo. The 1px border then drew a second line
+ * under that. Opaque ink removes both, and the blur went with it - it does nothing behind an
+ * opaque background and only costs a compositing layer.
+ *
+ * On the light pages the dark bar separates itself from cream without any border. */
+header.nav{position:sticky;top:0;z-index:50;background:var(--ink)}
 header.nav .wrap{display:flex;align-items:center;gap:18px;height:64px}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:#fff}
 .brand:hover{text-decoration:none}

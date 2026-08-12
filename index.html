@@ -27,6 +27,17 @@
     background:radial-gradient(circle,rgba(239,106,76,.30) 0%,rgba(239,106,76,.10) 38%,rgba(239,106,76,0) 70%)}
   .hero .glow2{bottom:-260px;left:-220px;width:740px;height:740px;z-index:0;
     background:radial-gradient(circle,rgba(244,166,60,.18) 0%,rgba(244,166,60,0) 65%)}
+  /* The top edge fades up into flat ink, so the hero meets the nav bar in exactly the same
+   * colour and there is no seam at any point across the width.
+   *
+   * Needed because the glow is a circle whose middle sits ABOVE the hero, and overflow:hidden
+   * slices it off dead straight at the top edge. That left the right-hand side arriving at full
+   * strength - rgb(48,34,36) against a rgb(16,19,25) nav - which reads as a bright band starting
+   * abruptly under the menu. Fading the first ~150px hides the cut and makes the light look like
+   * it begins inside the panel rather than being chopped off by it. */
+  .hero::before{content:'';position:absolute;left:0;right:0;top:0;height:150px;z-index:1;
+    pointer-events:none;background:linear-gradient(180deg,var(--ink) 0%,rgba(16,19,25,.72) 42%,rgba(16,19,25,0) 100%)}
+
   /* A little film grain. Stops the big flat dark area from banding on cheap monitors. */
   .hero .grain{inset:0;z-index:1;opacity:.05;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}

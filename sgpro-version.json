@@ -1,5 +1,5 @@
 {
-  "version": "1.0.9",
+  "version": "1.0.14",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Bullet reveals now read as a real move - the slide scales with your type size instead of a fixed small nudge."
+  "notes": "Scoreboards can now be nudged off their corner to sit exactly where you want them. The presenter clock is no longer capped at a small size. The app and the installer are both signed now, so Windows stops warning about them."
 }
