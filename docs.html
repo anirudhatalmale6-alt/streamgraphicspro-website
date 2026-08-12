@@ -39,6 +39,7 @@
     <a href="#layer-timer">Timer</a>
     <a href="#layer-slides">Slides</a>
     <a href="#layer-bullets">Bullets (builds)</a>
+    <a href="#layer-qr">QR code</a>
     <a href="#animations">Animations</a>
     <a href="#align">Align &amp; nudge</a>
     <div class="grp">Scoreboards</div>
@@ -113,7 +114,7 @@
     <p>The output is transparent by default, so it composites cleanly in OBS/vMix — no keying needed. If you're feeding a <b>hardware switcher</b> (which needs solid video), use the <b>Chroma key</b> selector on the builder: pick Green, Blue, Magenta, White, Black, Red, or a Custom colour that doesn't appear in your graphic, and key that colour in your switcher. Full-screen graphics don't need a key at all.</p>
 
     <h2 id="builder-basics">Graphics builder — the canvas &amp; selecting</h2>
-    <p>The builder is a free-form <b>1920×1080</b> canvas shown scaled down. The dashed rectangle is the <b>title-safe</b> area — keep important text inside it. Add layers with the buttons across the top of the side panel: Text, Box, Image, Video, Ticker, Timer, Slides, BG.</p>
+    <p>The builder is a free-form <b>1920×1080</b> canvas shown scaled down. The dashed rectangle is the <b>title-safe</b> area — keep important text inside it. Add layers with the buttons across the top of the side panel: Text, Box, Image, Video, Ticker, Timer, Slides, Bullets, QR, BG.</p>
     <h3>Moving, resizing, rotating</h3>
     <ul>
       <li><b>Select:</b> click a layer on the canvas (or click its row in the Layers list).</li>
@@ -145,6 +146,18 @@
     <h2 id="layer-box">Box &amp; BG layers</h2>
     <p>A <b>Box</b> is a coloured rectangle — perfect as a backing bar behind text. Options: <b>Fill</b> colour, <b>Opacity</b> (for a translucent panel), and <b>Radius</b> (rounded corners). A <b>BG</b> is simply a full-screen box for a solid background.</p>
 
+    <h3>Gradient fill</h3>
+    <p>Set <b>Fill style</b> to <b>Gradient</b> and you get a second colour, its own opacity, and a <b>Direction</b> dial. <b>Gradient (radial)</b> spreads from a point instead of across the bar.</p>
+    <p>The most useful setting is the least obvious one: give the far end an opacity of <b>0</b>. The bar then fades out into the picture instead of stopping on a hard vertical line — the standard broadcast lower-third look, and the reason most people open Photoshop.</p>
+
+    <h3>Soft edges</h3>
+    <p><b>Soft edges</b> feathers the rectangle away rather than ending it. Pick how far the fade reaches, and which edges it applies to — all of them, just the sides, or a single edge. Feathering only the right edge keeps a bar hard against the left of frame while it dissolves on the right.</p>
+    <p>This softens the <i>edge</i>, never the contents: text and images inside the box stay perfectly sharp.</p>
+
+    <h3>Drop shadow</h3>
+    <p>Tick <b>Drop shadow</b> to lift a panel off the video underneath. <b>Blur</b> sets how soft it is, <b>drop</b> how far below the box it sits, and the last box its strength. A little goes a long way — a shadow you can clearly see as a shadow is usually too strong.</p>
+    <p>Gradient, soft edges and drop shadow all work on a <b>Ticker</b> too, with the same controls.</p>
+
     <h2 id="layer-image">Image layer</h2>
     <p>Add an image by pasting a URL or clicking <b>Browse</b> to upload one. Options: <b>Shape</b> (none / rounded / circle — great for headshots) and <b>Fit</b> (contain shows the whole image; cover fills the frame). Set a <b>CSV field</b> to drive different images per row from a spreadsheet.</p>
 
@@ -152,7 +165,7 @@
     <p>Add a video by URL or Browse. Options: <b>Autoplay on air</b>, <b>Loop</b>, <b>Muted</b>, <b>Fit</b>, and <b>When it ends</b> (Hold last frame, or Hide). There are Play / Pause / Restart controls too. Notes: browsers require videos to start <b>muted</b> to autoplay; for a transparent clip use a <b>WebM (VP9) with alpha</b>. Very large files can be slow — keep clips reasonably sized.</p>
 
     <h2 id="layer-ticker">Ticker layer</h2>
-    <p>A scrolling headline bar. Type your text (use the ⤢ pop-out for long text), and set <b>Speed</b>, <b>Direction</b>, text colour/size/bold, and the bar's <b>Fill</b>, <b>Opacity</b> and <b>Radius</b>.</p>
+    <p>A scrolling headline bar. Type your text (use the ⤢ pop-out for long text), and set <b>Speed</b>, <b>Direction</b>, text colour/size/bold, and the bar's <b>Fill</b>, <b>Opacity</b> and <b>Radius</b>. A ticker also takes a <a href="#layer-box">gradient, soft edges and a drop shadow</a> — feathering both sides is a good way to stop a full-width bar from cutting the frame in half.</p>
 
     <h2 id="layer-timer">Timer layer</h2>
     <p>Drop a live timer into any design. Choose the <b>Type</b>: <b>Countdown</b>, <b>Count up</b>, <b>Countdown to a time</b>, or <b>Clock</b> (time of day). Set the duration and press Start / Pause / Reset. Extra options: <b>Show hours</b>, <b>Overtime</b> (a countdown keeps going negative in red), and <b>24-hour</b> for the clock. Style it like text (colour, size, bold, font, align). The clock is anchored to the app, so multiple machines match to the second.</p>
@@ -183,6 +196,26 @@
       <li><b>Start from blank each time it goes on air</b> (on by default). Without it, a graphic saved with everything showing comes back on air fully revealed and you'd have to blank it before every show. Turn it off if you want a static list.</li>
       <li><b>CSV field</b> — a bullets layer can take its whole list from one spreadsheet cell. Separate the points with <code>//</code> inside the cell, and a "Talking points" column gives every guest their own build. See <a href="#csv">CSV mail-merge</a>.</li>
     </ul>
+
+    <h2 id="layer-qr">QR code layer</h2>
+    <p>Add one with <b>＋ QR</b> and type a link into <b>Link / text</b>. The code is generated inside the app — there is no web service involved and no internet connection required, so it will still draw on a locked-down studio machine or a laptop with the Wi-Fi off.</p>
+    <p>Options: the two <b>Colours</b> (the squares and the background), <b>clear background</b> to let the video show through, a <b>drop shadow</b>, and <b>Robustness</b>.</p>
+
+    <h3>Reading the line underneath</h3>
+    <p>Under the link box the app tells you how the code came out — how many squares across, and roughly how many screen pixels each square works out to at the layer's current size. If that number drops below about 4 it turns orange, because a code that dense is hard for a phone to lock onto. Make the layer bigger or shorten the link.</p>
+
+    <h3>Making a QR easy to scan</h3>
+    <ul>
+      <li><b>Shorter links make bigger squares.</b> A short link needs fewer squares, so each one is larger on screen. If you can, use a short link that you control and point it wherever you like afterwards — that way you can change the destination without re-recording the show.</li>
+      <li><b>CAPITALS help too.</b> A link written <code>HTTPS://EXAMPLE.COM/SHOW</code> packs tighter than the same link in lower case, so the squares come out bigger. Web addresses are not case-sensitive in the part that matters, and phones handle it fine.</li>
+      <li><b>Robustness</b> adds spare data so a code still reads when part of it is obscured. <b>Normal</b> is right for almost everything. Go to <b>Highest</b> only if you are putting a logo over the middle of the code — it makes the squares smaller, which usually costs you more than it buys.</li>
+      <li><b>Leave it up for at least ten seconds.</b> Someone has to notice it, decide they care, find their phone and aim it. Two seconds is a wasted graphic.</li>
+      <li><b>Clear background</b> looks good but only works over something plain and light. Over busy footage the code will not read. When in doubt, keep the white background.</li>
+      <li><b>Scan it yourself off the actual output</b> before you go live — not off the builder, off the real thing, on a phone, from where a viewer would be sitting.</li>
+    </ul>
+
+    <h3>A different QR for every row</h3>
+    <p>Give the QR layer a <b>CSV field</b> and a column of links drives it, exactly like a text layer. One graphic then produces a personal code for every guest, product or session in the spreadsheet.</p>
 
     <h2 id="animations">Animations</h2>
     <p>Every layer has an independent <b>Animate ON</b> (how it comes on) and <b>Animate OFF</b> (how it leaves), each with its own <b>type</b>, <b>delay</b> and <b>duration</b>. Types include Fade, Slide (up/down/left/right), Fly-in from off-screen, Bounce, Pop and Spin.</p>
