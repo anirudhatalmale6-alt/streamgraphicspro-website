@@ -93,6 +93,12 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
       it's all on your own computer.
     </p>
     <p style="color:var(--muted);font-size:14.5px;line-height:1.65">
+      <b>If Windows shows a blue warning.</b> The installer is signed by <b>Manhattan Beach Studios LLC</b> — that name is what you
+      should see on the prompt. Windows still puts a "Windows protected your PC" box in front of newly released software until
+      enough people have downloaded it. Click <b>More info</b>, then <b>Run anyway</b>. If the publisher says anything other than
+      Manhattan Beach Studios LLC, stop and <a href="contact.html">tell me</a>.
+    </p>
+    <p style="color:var(--muted);font-size:14.5px;line-height:1.65">
       New to it? The <a href="docs.html">quick guide</a> gets you a lower third on air in about two minutes, and there are
       <a href="tutorials.html">short videos</a> too. Questions, ideas, gripes — <a href="contact.html">tell me</a>. I read everything.
     </p>

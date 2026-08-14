@@ -1,5 +1,5 @@
 {
-  "version": "1.0.14",
+  "version": "1.0.16",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Scoreboards can now be nudged off their corner to sit exactly where you want them. The presenter clock is no longer capped at a small size. The app and the installer are both signed now, so Windows stops warning about them."
+  "notes": "New QR code layer — a scannable link on screen, generated inside the app with no internet needed. Boxes can now have gradient fills, soft edges and drop shadows. Paste a screen grab straight in as a reference image."
 }
