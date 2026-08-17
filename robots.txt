@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# The download endpoint and the leads list aren't pages — no reason for a crawler
+# to walk them, and dl.php issues one-time links.
+Disallow: /dl.php
+Disallow: /leads.php
+
+Sitemap: https://streamgraphicspro.com/sitemap.xml

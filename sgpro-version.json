@@ -1,5 +1,5 @@
 {
-  "version": "1.0.16",
+  "version": "1.0.18",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "New QR code layer — a scannable link on screen, generated inside the app with no internet needed. Boxes can now have gradient fills, soft edges and drop shadows. Paste a screen grab straight in as a reference image."
+  "notes": "Setting up a second computer just got a lot quicker. A new Browser source links page lists every output and control link already built from this computer's network address — copy one, copy them all, or copy the lot as an email to whoever is setting up the OBS/vMix machine. Every Copy link button in the app now gives you that network address too, instead of a localhost link that could never work on another computer."
 }
