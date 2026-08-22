@@ -1,5 +1,5 @@
 {
-  "version": "1.0.18",
+  "version": "1.0.19",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Setting up a second computer just got a lot quicker. A new Browser source links page lists every output and control link already built from this computer's network address — copy one, copy them all, or copy the lot as an email to whoever is setting up the OBS/vMix machine. Every Copy link button in the app now gives you that network address too, instead of a localhost link that could never work on another computer."
+  "notes": "New: a full Teleprompter. Its own control panel and its own browser-source output, driven with the keys you already use - space to start and stop, left and right for speed, up and down to jump. Start a line with ## and it becomes a bookmark you can jump straight to. The mirrored output is a separate address, so beam-splitter glass in front of the lens and a confidence monitor at the back of the room run off one script at the same time and stay in step. The scroll position lives on the server like the presenter timer's clock, so screens cannot drift apart and a browser source that reloads mid-take comes back where the script is, not at the top. Play, pause, faster, slower and next-section are all on the Control API for Stream Deck."
 }
