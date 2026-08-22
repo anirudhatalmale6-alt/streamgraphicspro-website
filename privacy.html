@@ -47,7 +47,15 @@
     <li><b>Support communications</b> — the content of messages you send us, so we can help you.</li>
     <li><b>Website information</b> — basic, standard server logs (such as your IP address, browser type and pages visited) that almost every website records, and any analytics we may add to understand general usage. The site does not require you to log in.</li>
   </ul>
-  <p>The software itself does <b>not</b> upload your designs, media, or show content. License activation works offline. The app may make a simple, anonymous check to our website to see whether a newer version is available; this can be turned off and carries no personal information.</p>
+  <p>The software itself does <b>not</b> upload your designs, media, or show content. License activation works offline.</p>
+  <p><b>What the app does send us.</b> When StreamGraphics Pro starts, it makes two small requests to our website. The first checks whether a newer version is available. The second, on licensed copies only, tells us that a licence was opened — so that we can tell when a key sold to one customer is being used in many places at once. That second request contains exactly three things:</p>
+  <ul>
+    <li>a <b>scrambled code for your licence key</b> — a one-way hash, never the key itself;</li>
+    <li>a <b>scrambled code for your computer</b> — made from your machine's network hardware and computer name, hashed together with your licence, so it cannot be used to recognise the same computer under a different licence;</li>
+    <li>the <b>version</b> of StreamGraphics Pro you are running.</li>
+  </ul>
+  <p>It does <b>not</b> send your name, your email address, your computer's name, your location, or anything you have typed into the app. We do not store your IP address against it. We record the first and last date a licence was seen and how many times it has been opened, and nothing else. It cannot switch your software off, and if it fails — no internet, our site down — the app carries on exactly as normal.</p>
+  <p>Both requests can be turned off. Set the environment variable <code>SG_NO_SEEN=1</code> before launching to stop the licence report; the free, unlicensed version never sends it at all.</p>
 
   <h3>3. How we use your information</h3>
   <ul>

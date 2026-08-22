@@ -1,5 +1,5 @@
 {
-  "version": "1.0.22",
+  "version": "1.0.23",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Your licence, and who it belongs to. Every control panel now shows Licensed to your name and email quietly in the corner - operator screens only, never the output pages, so it can never reach your stream. Licence keys can now also be withdrawn if one is shared publicly, in which case the watermark returns the next time that copy is opened; a copy already running is never interrupted, and if the app cannot reach us, or you are offline at a venue, your licence keeps working exactly as normal. Also: Copy all output links and Copy all control links now include the name of each link, so a pasted list says which address is which."
+  "notes": "Licence activity. A licensed copy now tells the vendor that a licence was opened, so a key sold once but used in forty places shows itself. It sends three things and no more - a scrambled code for the key, a scrambled code for the computer, and the version number. No name, no email, no computer name, no location, and no IP address is stored against it. It cannot switch anything off, and if it cannot reach us the app carries on exactly as normal. Set SG_NO_SEEN=1 to turn it off; the free version never sends it. Full detail is on the Privacy page. Also: in the Edit rows window you can now take a graphic off air without closing it, and Copy all output links includes the name of each link so a pasted list says which address is which."
 }

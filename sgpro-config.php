@@ -26,5 +26,14 @@ const SGPRO_FROM_NAME = 'Mark at StreamGraphics Pro';
 // 6) How long an e-mailed download link stays valid (seconds). 7 days by default.
 const SGPRO_LINK_TTL = 604800;
 
-// 7) Set to true once you're happy, to stop showing PHP errors on screen.
+// 7) Where the "this licence was opened here" counts are stored. Same folder as the leads,
+//    which .htaccess already keeps out of the browser's reach.
+const SGPRO_SEEN_FILE = __DIR__ . '/sgpro-leads/installs.json';
+
+// 8) Flag a licence once it has been opened on this many different machines.
+//    Two is normal (a show computer and a backup). Five is a big school with several rooms.
+//    Twenty is a key that has been passed around.
+const SGPRO_INSTALL_FLAG = 8;
+
+// 9) Set to true once you're happy, to stop showing PHP errors on screen.
 const SGPRO_QUIET = true;
