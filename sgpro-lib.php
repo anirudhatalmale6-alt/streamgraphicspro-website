@@ -62,7 +62,14 @@ function sgpro_setup_warning_html(): string {
  *
  * A path used in two places belongs in one place. */
 function sgpro_seen_file(): string {
-    if (defined('SGPRO_SEEN_FILE') && SGPRO_SEEN_FILE) { return SGPRO_SEEN_FILE; }
+    if (defined('SGPRO_SEEN_FILE') && SGPRO_SEEN_FILE) {
+        /* Make sure the folder exists for a CONFIGURED path too, not just the fallback. Point
+           the setting at a folder that isn't there and fopen() quietly fails, which lands you
+           right back at an empty page with nothing to explain it. */
+        $d = dirname(SGPRO_SEEN_FILE);
+        if (!is_dir($d)) { @mkdir($d, 0700, true); }
+        return SGPRO_SEEN_FILE;
+    }
     /* 🚨 ABOVE public_html by default, not inside it.
        sgpro-leads/.htaccess says "Require all denied" and does block leads.csv - but this host
        puts nginx in front of Apache, and nginx serves .json straight off disk without ever
