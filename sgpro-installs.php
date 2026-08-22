@@ -109,6 +109,22 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
     <a class="btn alt" href="sgpro-installs.php?logout=1">Sign out</a>
   </div>
 
+  <?php if (sgpro_seen_is_public()): ?>
+    <div style="background:rgba(180,25,45,.10);border:1px solid rgba(180,25,45,.45);border-left:5px solid #b4192d;border-radius:12px;padding:14px 18px;margin-bottom:20px">
+      <b>These counts are sitting inside your public web folder.</b><br>
+      <code><?= h(sgpro_seen_file()) ?></code><br><br>
+      The <code>.htaccess</code> in that folder is supposed to block it, and it does block
+      <code>leads.csv</code> — but this host serves <code>.json</code> files straight off disk
+      without checking <code>.htaccess</code>, so anyone who guessed the address could download
+      it. There are no names or e-mail addresses in it, but it is still your customers' data.<br><br>
+      <b>Fix:</b> in <code>public_html/sgpro-config.php</code>, change <code>SGPRO_SEEN_FILE</code> to<br>
+      <code>const SGPRO_SEEN_FILE = dirname(__DIR__) . '/sgpro-private/installs.json';</code><br>
+      That is one level above <code>public_html</code>, where no web server can reach it. Then
+      delete the old <code>installs.json</code>. The count starts again from zero, which costs
+      you nothing.
+    </div>
+  <?php endif; ?>
+
   <div class="stat">
     <div><b><?= count($keys) ?></b><span>licences seen</span></div>
     <div><b<?= $flagged ? ' class="hotnum"' : '' ?>><?= $flagged ?></b><span>over <?= $FLAG ?> machines</span></div>

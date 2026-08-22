@@ -63,7 +63,23 @@ function sgpro_setup_warning_html(): string {
  * A path used in two places belongs in one place. */
 function sgpro_seen_file(): string {
     if (defined('SGPRO_SEEN_FILE') && SGPRO_SEEN_FILE) { return SGPRO_SEEN_FILE; }
-    return __DIR__ . '/sgpro-leads/installs.json';
+    /* 🚨 ABOVE public_html by default, not inside it.
+       sgpro-leads/.htaccess says "Require all denied" and does block leads.csv - but this host
+       puts nginx in front of Apache, and nginx serves .json straight off disk without ever
+       consulting .htaccess. The counts file was therefore downloadable by anyone who guessed
+       the name, while a NON-existent .json in the same folder correctly returned 403. A file
+       that must stay private cannot live under the web root and rely on a rule the front-end
+       server never reads. */
+    $dir = dirname(__DIR__) . '/sgpro-private';
+    if (!is_dir($dir)) { @mkdir($dir, 0700, true); }
+    return $dir . '/installs.json';
+}
+
+/* Is the counts file sitting somewhere a browser could fetch it? */
+function sgpro_seen_is_public(): bool {
+    $f = realpath(sgpro_seen_file()) ?: sgpro_seen_file();
+    $root = realpath(__DIR__) ?: __DIR__;
+    return strpos($f, $root . DIRECTORY_SEPARATOR) === 0;
 }
 
 /* Why the counter might not be recording anything — for the page to show when it has nothing
@@ -79,6 +95,7 @@ function sgpro_seen_health(): array {
         'dir_writable'=> is_dir($dir) && is_writable($dir),
         'file_exists' => is_file($f),
         'file_size'   => is_file($f) ? (int) filesize($f) : 0,
+        'public'      => sgpro_seen_is_public(),
     ];
 }
 
