@@ -6,10 +6,12 @@ session_start();
 
 if (isset($_GET['logout'])) { $_SESSION = []; session_destroy(); header('Location: leads.php'); exit; }
 if (($_POST['pw'] ?? '') !== '') {
-    if (hash_equals(SGPRO_LEADS_PASSWORD, (string)$_POST['pw'])) { $_SESSION['sgpro_leads'] = true; }
+    // Refused outright while the password is the one from the template — see sgpro-lib.php.
+    if (sgpro_default_password()) { $bad = true; }
+    elseif (hash_equals(SGPRO_LEADS_PASSWORD, (string)$_POST['pw'])) { $_SESSION['sgpro_leads'] = true; }
     else { $bad = true; }
 }
-$ok = !empty($_SESSION['sgpro_leads']);
+$ok = !empty($_SESSION['sgpro_leads']) && !sgpro_default_password();
 
 if ($ok && isset($_GET['csv'])) {                       // straight download for Excel / Mailchimp
     header('Content-Type: text/csv; charset=utf-8');
@@ -53,6 +55,7 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 <body>
 <section><div class="wrap">
 <?php if (!$ok): ?>
+  <?= sgpro_setup_warning_html() ?>
   <div class="center"><h2>Downloads</h2><p class="lead">Enter the password.</p></div>
   <form class="pwbox" method="post">
     <?php if (!empty($bad)): ?><p style="color:#8a2418;font-size:14px">Wrong password.</p><?php endif; ?>

@@ -14,10 +14,12 @@ session_start();
 
 if (isset($_GET['logout'])) { $_SESSION = []; session_destroy(); header('Location: sgpro-installs.php'); exit; }
 if (($_POST['pw'] ?? '') !== '') {
-    if (hash_equals(SGPRO_LEADS_PASSWORD, (string)$_POST['pw'])) { $_SESSION['sgpro_leads'] = true; }
+    // Refused outright while the password is the one from the template — see sgpro-lib.php.
+    if (sgpro_default_password()) { $bad = true; }
+    elseif (hash_equals(SGPRO_LEADS_PASSWORD, (string)$_POST['pw'])) { $_SESSION['sgpro_leads'] = true; }
     else { $bad = true; }
 }
-$ok = !empty($_SESSION['sgpro_leads']);
+$ok = !empty($_SESSION['sgpro_leads']) && !sgpro_default_password();
 
 $FLAG = defined('SGPRO_INSTALL_FLAG') ? (int)SGPRO_INSTALL_FLAG : 8;
 $FILE = defined('SGPRO_SEEN_FILE') ? SGPRO_SEEN_FILE : (__DIR__ . '/sgpro-leads/installs.json');
@@ -91,6 +93,7 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 <body>
 <section><div class="wrap">
 <?php if (!$ok): ?>
+  <?= sgpro_setup_warning_html() ?>
   <div class="center"><h2>Licence activity</h2><p class="lead">Enter the password — the same one as the downloads page.</p></div>
   <form class="pwbox" method="post">
     <?php if (!empty($bad)): ?><p style="color:#8a2418;font-size:14px">Wrong password.</p><?php endif; ?>

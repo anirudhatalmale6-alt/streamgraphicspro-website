@@ -2,6 +2,55 @@
 /* Shared helpers for the gated download. Nothing here needs editing — see sgpro-config.php. */
 require_once __DIR__ . '/sgpro-config.php';
 
+/* ============================================================================
+ * Is this site still running on the settings it shipped with?
+ *
+ * 🚨 This exists because it actually happened. sgpro-config.php is the one file the owner
+ * edits, and it was bundled in the same zip as the pages he re-uploads - so refreshing a page
+ * silently put the template values back, and the leads password became a string printed in
+ * every copy of that zip. Nothing broke, nothing warned, and the customer list sat behind a
+ * publicly known password until somebody happened to look.
+ *
+ * A security hole that fails silently is the worst kind. These make it loud.
+ * ==========================================================================*/
+function sgpro_default_password(): bool {
+    return !defined('SGPRO_LEADS_PASSWORD')
+        || SGPRO_LEADS_PASSWORD === '' || stripos(SGPRO_LEADS_PASSWORD, 'CHANGE-ME') === 0;
+}
+function sgpro_default_secret(): bool {
+    return !defined('SGPRO_SECRET')
+        || stripos(SGPRO_SECRET, 'CHANGE-ME') === 0 || strlen(SGPRO_SECRET) < 20;
+}
+
+/* The block both admin pages show instead of letting anybody in. Deliberately refuses the
+ * login rather than merely warning: while the password is the one from the template, "signing
+ * in" protects nothing, so allowing it would only make the hole feel closed. */
+function sgpro_setup_warning_html(): string {
+    $pw = sgpro_default_password();
+    $sc = sgpro_default_secret();
+    if (!$pw && !$sc) { return ''; }
+    $h  = '<div style="max-width:720px;margin:0 auto 24px;background:#fdeaea;border:1px solid #d98b8b;'
+        . 'border-left:5px solid #b4192d;border-radius:12px;padding:18px 22px;color:#4a1216;line-height:1.6">';
+    $h .= '<b style="font-size:17px">This site is still using the settings it shipped with.</b><br><br>';
+    if ($pw) {
+        $h .= 'The password for this page is still <code>CHANGE-ME-too</code> — the one printed in '
+            . 'the setup files, which means it is not a password at all. <b>Sign-in is switched off '
+            . 'until it is changed.</b><br><br>';
+    }
+    if ($sc) {
+        $h .= 'The link-signing secret is still the example one, so e-mailed download links could be '
+            . 'forged by anyone who has seen the setup files.<br><br>';
+    }
+    $h .= '<b>To fix it, edit <code>public_html/sgpro-config.php</code>:</b><ul style="margin:8px 0 0 18px">';
+    if ($sc) { $h .= '<li><code>SGPRO_SECRET</code> — any long random string, 30+ characters. '
+                   . 'Changing it stops previously e-mailed download links from working, which is fine.</li>'; }
+    if ($pw) { $h .= '<li><code>SGPRO_LEADS_PASSWORD</code> — a password only you know.</li>'; }
+    $h .= '</ul><p style="margin:12px 0 0">Save the file and reload this page. Nothing else needs changing.</p>';
+    $h .= '<p style="margin:10px 0 0;font-size:13px;opacity:.85">If this has appeared out of nowhere, '
+        . 'sgpro-config.php was probably overwritten by re-uploading a setup zip over the top of it.</p>';
+    return $h . '</div>';
+}
+
 function sgpro_site_url(): string {
     $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
