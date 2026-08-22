@@ -1,5 +1,5 @@
 {
-  "version": "1.0.23",
+  "version": "1.0.24",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Licence activity. A licensed copy now tells the vendor that a licence was opened, so a key sold once but used in forty places shows itself. It sends three things and no more - a scrambled code for the key, a scrambled code for the computer, and the version number. No name, no email, no computer name, no location, and no IP address is stored against it. It cannot switch anything off, and if it cannot reach us the app carries on exactly as normal. Set SG_NO_SEEN=1 to turn it off; the free version never sends it. Full detail is on the Privacy page. Also: in the Edit rows window you can now take a graphic off air without closing it, and Copy all output links includes the name of each link so a pasted list says which address is which."
+  "notes": "Fixes a bug in 1.0.23: registering a licence key did not register the machine. The app reported its licence once, eight seconds after starting, so pasting a key after the app was already open sent nothing at all. It now reports when a key is activated as well as at launch. If you are on 1.0.23, simply restarting the app has the same effect."
 }
