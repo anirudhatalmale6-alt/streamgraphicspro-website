@@ -1,5 +1,5 @@
 {
-  "version": "1.0.24",
+  "version": "1.0.25",
   "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Fixes a bug in 1.0.23: registering a licence key did not register the machine. The app reported its licence once, eight seconds after starting, so pasting a key after the app was already open sent nothing at all. It now reports when a key is activated as well as at launch. If you are on 1.0.23, simply restarting the app has the same effect."
+  "notes": "Fixes the licence report, which was being refused by the web host and failing silently. The app did not put a name on its outgoing requests, and a request that does not identify itself looks like a bot, so the host's firewall answered 403 to every report. Update checks and the revoked-key list were never affected - those are plain files the firewall does not see. Nothing else changes."
 }
