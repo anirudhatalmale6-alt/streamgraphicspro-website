@@ -18,7 +18,7 @@
  *
  * The file it writes lives outside public_html where the host allows it - see sgpro-config.php.
  */
-require_once __DIR__ . '/sgpro-config.php';
+require_once __DIR__ . '/sgpro-lib.php';
 if (defined('SGPRO_QUIET') && SGPRO_QUIET) { @ini_set('display_errors', '0'); }
 
 header('Content-Type: text/plain; charset=utf-8');
@@ -36,7 +36,7 @@ if (!preg_match('/^[0-9a-f]{16,64}$/', $k) || !preg_match('/^[0-9a-f]{8,32}$/', 
 }
 $v = preg_replace('/[^0-9A-Za-z.\-]/', '', substr($v, 0, 16));
 
-$file = defined('SGPRO_SEEN_FILE') ? SGPRO_SEEN_FILE : (__DIR__ . '/sgpro-seen.json');
+$file = sgpro_seen_file();   // shared with sgpro-installs.php - see sgpro-lib.php
 $today = gmdate('Y-m-d');
 
 /* One lock, read-modify-write. Several copies of the app can start at the same moment across

@@ -51,6 +51,37 @@ function sgpro_setup_warning_html(): string {
     return $h . '</div>';
 }
 
+/* WHERE THE LICENCE COUNTS LIVE — one definition, used by the writer and the reader.
+ *
+ * 🚨 These were two separate expressions, and they disagreed. sgpro-seen.php fell back to
+ * public_html/sgpro-seen.json while sgpro-installs.php fell back to
+ * public_html/sgpro-leads/installs.json. With SGPRO_SEEN_FILE defined they agreed; with it
+ * missing - one edit to sgpro-config.php is all that takes - the collector wrote one file and
+ * the page read another. Both succeeded. Nothing errored. The page simply stayed empty for
+ * ever, which is the worst possible way for a counter to fail.
+ *
+ * A path used in two places belongs in one place. */
+function sgpro_seen_file(): string {
+    if (defined('SGPRO_SEEN_FILE') && SGPRO_SEEN_FILE) { return SGPRO_SEEN_FILE; }
+    return __DIR__ . '/sgpro-leads/installs.json';
+}
+
+/* Why the counter might not be recording anything — for the page to show when it has nothing
+ * to show. "Empty" and "broken" look identical otherwise, and the endpoint deliberately cannot
+ * say which, because it must never leak or bother the person running the app. */
+function sgpro_seen_health(): array {
+    $f = sgpro_seen_file();
+    $dir = dirname($f);
+    return [
+        'file'        => $f,
+        'configured'  => defined('SGPRO_SEEN_FILE') && SGPRO_SEEN_FILE,
+        'dir_exists'  => is_dir($dir),
+        'dir_writable'=> is_dir($dir) && is_writable($dir),
+        'file_exists' => is_file($f),
+        'file_size'   => is_file($f) ? (int) filesize($f) : 0,
+    ];
+}
+
 function sgpro_site_url(): string {
     $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');

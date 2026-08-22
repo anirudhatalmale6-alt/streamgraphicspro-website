@@ -22,7 +22,7 @@ if (($_POST['pw'] ?? '') !== '') {
 $ok = !empty($_SESSION['sgpro_leads']) && !sgpro_default_password();
 
 $FLAG = defined('SGPRO_INSTALL_FLAG') ? (int)SGPRO_INSTALL_FLAG : 8;
-$FILE = defined('SGPRO_SEEN_FILE') ? SGPRO_SEEN_FILE : (__DIR__ . '/sgpro-leads/installs.json');
+$FILE = sgpro_seen_file();   // shared with sgpro-seen.php - see sgpro-lib.php
 
 $keys = [];
 $updated = '';
@@ -124,9 +124,37 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
     </p>
   <?php endif; ?>
 
-  <?php if (!$keys): ?>
-    <p class="lead">Nothing recorded yet. Copies running 1.0.23 or later report in when they start;
-      older versions don't, so this fills up as people update.</p>
+  <?php if (!$keys): $H = sgpro_seen_health(); ?>
+    <p class="lead">Nothing recorded yet. Copies running 1.0.24 or later report in when they start
+      and when a key is activated; older versions don't, so this fills up as people update.</p>
+    <?php /* 🚨 "Empty" and "broken" look exactly alike from here, and the counter itself cannot
+             tell you which - it answers the same way whether it recorded something or silently
+             could not, because it must never leak or interrupt the app. So say it here. */ ?>
+    <div class="tblwrap" style="padding:16px 18px">
+      <b>If you expected something here, this is where to look</b>
+      <table style="min-width:0;margin-top:10px">
+        <tr><td>Reading from</td><td class="fp"><?= h($H['file']) ?></td></tr>
+        <tr><td>Set in sgpro-config.php</td>
+            <td><?= $H['configured']
+                  ? '<b style="color:#1a7f4b">yes</b>'
+                  : '<b class="hotnum">NO — add SGPRO_SEEN_FILE, or the counter and this page can end up using different files</b>' ?></td></tr>
+        <tr><td>Folder exists</td><td><?= $H['dir_exists'] ? 'yes' : '<b class="hotnum">no</b>' ?></td></tr>
+        <tr><td>Folder writable</td>
+            <td><?= $H['dir_writable']
+                  ? '<b style="color:#1a7f4b">yes</b>'
+                  : '<b class="hotnum">NO — nothing can ever be recorded until this is fixed</b>' ?></td></tr>
+        <tr><td>File written yet</td>
+            <td><?= $H['file_exists']
+                  ? ('yes, ' . number_format($H['file_size']) . ' bytes')
+                  : 'not yet — no report has arrived' ?></td></tr>
+      </table>
+      <p style="margin:12px 0 0;color:var(--muted);font-size:13px">
+        If the folder is writable and the file has never been written, nothing has reached the
+        counter — check that <code>sgpro-seen.php</code> is in <code>public_html</code>. If the
+        file exists but this list is empty, this page is reading a different file from the one
+        being written, which means <code>SGPRO_SEEN_FILE</code> is missing from your config.
+      </p>
+    </div>
   <?php else: ?>
   <div class="tblwrap"><table>
     <tr><th>Licence fingerprint</th><th>Machines</th><th>Launches</th><th>First seen</th><th>Last seen</th><th>Version</th></tr>
