@@ -84,9 +84,15 @@ function sgpro_seen_file(): string {
 
 /* Is the counts file sitting somewhere a browser could fetch it? */
 function sgpro_seen_is_public(): bool {
-    $f = realpath(sgpro_seen_file()) ?: sgpro_seen_file();
-    $root = realpath(__DIR__) ?: __DIR__;
-    return strpos($f, $root . DIRECTORY_SEPARATOR) === 0;
+    /* 🚨 Resolve the FOLDER, not the file. realpath() returns false for a path that does not
+       exist yet, and the counts file does not exist until the first report arrives - so this
+       fell back to the raw string, which still contains "..". "public_html/../sgpro-private"
+       literally starts with "public_html/", so a file safely ABOVE the web root was reported
+       as being inside it. The folder is created by sgpro_seen_file(), so it always resolves. */
+    $dir = realpath(dirname(sgpro_seen_file()));
+    $root = realpath(__DIR__);
+    if ($dir === false || $root === false) { return false; }   // can't tell; don't cry wolf
+    return $dir === $root || strpos($dir . DIRECTORY_SEPARATOR, $root . DIRECTORY_SEPARATOR) === 0;
 }
 
 /* Why the counter might not be recording anything — for the page to show when it has nothing

@@ -118,7 +118,9 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
       without checking <code>.htaccess</code>, so anyone who guessed the address could download
       it. There are no names or e-mail addresses in it, but it is still your customers' data.<br><br>
       <b>Fix:</b> in <code>public_html/sgpro-config.php</code>, change <code>SGPRO_SEEN_FILE</code> to<br>
-      <code>const SGPRO_SEEN_FILE = dirname(__DIR__) . '/sgpro-private/installs.json';</code><br>
+      <code>const SGPRO_SEEN_FILE = __DIR__ . '/../sgpro-private/installs.json';</code><br>
+      <span style="font-size:13px">(<code>__DIR__ . '/../'</code>, not <code>dirname(__DIR__)</code> — a
+      <code>const</code> line may not call a function, and PHP refuses to load the whole file if it does.)</span><br>
       That is one level above <code>public_html</code>, where no web server can reach it. Then
       delete the old <code>installs.json</code>. The count starts again from zero, which costs
       you nothing.
