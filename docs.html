@@ -48,6 +48,11 @@
     <a href="#sb-look">Look, logo &amp; backdrop</a>
     <a href="#scorer">The big-button Scorer</a>
     <a href="#multiboard">Multiple courts</a>
+    <div class="grp">Teleprompter</div>
+    <a href="#prompter">Running a script</a>
+    <a href="#prompter-look">How it looks</a>
+    <a href="#prompter-screens">Mirrored glass &amp; monitors</a>
+    <a href="#prompter-import">Opening a document</a>
     <div class="grp">Shows &amp; data</div>
     <a href="#library">Show Library &amp; Program</a>
     <a href="#csv">CSV mail-merge</a>
@@ -252,6 +257,26 @@
 
     <h2 id="multiboard">Multiple courts</h2>
     <p>Run several independent scoreboards from one app. On the Scoreboard control, use <b>＋ New board</b> to add a court and the <b>dropdown</b> to switch between them; <b>Rename</b> and <b>Delete</b> are there too. Each board has its own output link and its own Scorer link, so five courts is five browser-source URLs from one computer — no extra IP addresses, no port juggling.</p>
+
+    <h2 id="prompter">Teleprompter — running a script</h2>
+    <p>Open the <b>Teleprompter</b> from the home page. The control panel is at <code>/prompter</code> and the output is at <code>/prompter-output</code>. Type or paste your script, press <b>Play</b>, and it scrolls.</p>
+    <p>The keys are the ones prompter operators already have in their hands: <b>space</b> starts and stops, <b>←</b> and <b>→</b> change the speed while it's running, <b>↑</b> and <b>↓</b> jump back and ahead, <b>Home</b> returns to the top, and <b>PgUp</b> / <b>PgDn</b> step between sections. Hold <b>Shift</b> with an arrow for a bigger step. They work on the control panel <b>and</b> on the output window, so you can drive it from whichever screen your hand is on — and none of them fire while you're typing in the script.</p>
+    <p><b>Bookmarks.</b> Start any line with <code>##</code> and it becomes a section: a button on the panel, a marker on screen if you want one, and a Stream Deck key. Press <b>1</b>–<b>9</b> to jump straight to a section; the number is printed on the button. Bookmarks live in the text, so moving a section moves its bookmark with it.</p>
+    <p><b>Edit on screen.</b> The button above the preview turns the preview into the editor, at prompter size and in the prompter's own font and colours. It opens on the part of the script being read right now, and a line wraps there exactly where it wraps on the glass — so you can see whether a change makes a line run long before it reaches the talent. Everything you type is on air within half a second. <b>Prompter to my cursor</b> sends the read to the line you're editing; <b>Esc</b> closes it.</p>
+    <p><b>Why it doesn't drift.</b> The scroll position lives in the app, not in each browser, the same way the presenter timer's clock does. Every screen works out its own frame from that one number, so two screens can't slide out of step however long the read runs — and a browser source that reloads mid-take comes back where the script <i>is</i>, not at the top.</p>
+
+    <h2 id="prompter-look">Teleprompter — how it looks</h2>
+    <p>Font, size, line spacing, column width, alignment and bold; text colour; background colour, fully transparent (to key it over a shot) or a chroma colour for a hardware switcher. The <b>reading indicator</b> can be a line, arrows, both or nothing, in any colour, and you can slide it up or down to wherever the talent's eye sits. <b>Soften the top and bottom edges</b> fades lines in and out instead of popping them.</p>
+    <p>Colours change on the output as you drag the picker. Everything here applies to every screen at once.</p>
+
+    <h2 id="prompter-screens">Teleprompter — mirrored glass, confidence monitors and browser sources</h2>
+    <p><code>/prompter-output?mirror=1</code> is a separate address from the normal one, so beam-splitter glass in front of the lens and a confidence monitor at the back of the room run off one script at the same time and stay in step. <code>?flip=1</code> mirrors vertically for a rig that reflects that way; use both flags together for both.</p>
+    <p>Either address works as an OBS Browser Source, a vMix Web Browser input, or a browser window dragged full-screen onto a monitor. On the StreamGraphics computer itself, <b>Put it on a monitor</b> does that last one for you: press <b>Find my monitors</b>, allow the permission, pick the display and send the normal or mirrored output straight to it. That needs Chrome or Edge on the computer running the app — from a tablet or another PC, no browser can place a window on a different machine's monitor, so open the output over there and drag it across, or use it as a browser source.</p>
+
+    <h2 id="prompter-import">Teleprompter — opening a document</h2>
+    <p>You don't have to paste. <b>Open a document…</b> under the script box takes Word (<code>.docx</code>), rich text (<code>.rtf</code>) and plain text (<code>.txt</code>, <code>.md</code>) — or drag the file straight onto the script box.</p>
+    <p>Headings in the document come across as bookmarks on their own. If your script is written in Word with Heading 1 and Heading 2 for each section, those sections arrive already marked up and already on your Stream Deck; you don't have to go back and add <code>##</code> by hand. Everything else comes in as lines, one paragraph per line.</p>
+    <p>Old binary <code>.doc</code> files and PDFs aren't read — open them in Word and <b>Save As</b> .docx or plain text first. The file is read and handed straight back to the page; nothing is stored.</p>
 
     <h2 id="library">Show Library &amp; Program output</h2>
     <p>The <b>Show Library</b> is your collection of saved graphics. Each has an on/off switch — flip several on and they appear <b>together</b> on the single <b>Program output</b>. Add that one URL to OBS/vMix and run your whole show from the Library, switching graphics live. Other buttons: <b>Edit Preset</b> (opens it back in the builder), <b>Rename</b>, <b>Delete</b>, and <b>All off</b> to clear the screen fast. Each graphic plays its own designed animations as it comes on and off.</p>
