@@ -78,7 +78,7 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
   <nav id="nv">
     <a href="index.html#features">Features</a><a href="pricing.html">Pricing</a>
     <a href="tutorials.html">Videos</a><a href="docs.html">Guide</a><a href="companion.html">Companion</a><a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
+    <a href="release-notes.html">What's new</a><a href="contact.html">Contact</a><a class="navcta" href="get-started.php">Download</a>
   </nav>
 </div></header>
 
