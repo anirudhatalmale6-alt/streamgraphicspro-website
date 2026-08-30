@@ -27,9 +27,12 @@
     <div class="grp">Output</div>
     <a href="#obs">Add to OBS</a>
     <a href="#vmix">Add to vMix</a>
-    <a href="#chroma">Transparency &amp; chroma</a>
+    <a href="#chroma">Choose your output</a>
+    <a href="#keyfill">Key + fill</a>
+    <a href="#monitor">Send it to a monitor</a>
     <div class="grp">Graphics builder</div>
     <a href="#builder-basics">The canvas &amp; selecting</a>
+    <a href="#guides">Framing guides</a>
     <a href="#layers">The Layers panel</a>
     <a href="#layer-text">Text</a>
     <a href="#layer-box">Box &amp; BG</a>
@@ -42,7 +45,9 @@
     <a href="#layer-qr">QR code</a>
     <a href="#animations">Animations</a>
     <a href="#align">Align &amp; nudge</a>
+    <a href="#fields">Fields — what a design asks for</a>
     <div class="grp">Scoreboards</div>
+    <a href="#game">Football &amp; basketball</a>
     <a href="#sb-setup">Setting up a match</a>
     <a href="#sb-scoring">Scoring &amp; games</a>
     <a href="#sb-look">Look, logo &amp; backdrop</a>
@@ -76,7 +81,20 @@
     <h2 id="install">Install &amp; launch</h2>
     <p style="margin:8px 0 14px;font-size:14px"><a href="tutorials.html" style="color:var(--accent);font-weight:600;text-decoration:none">&#9654; Watch the video: Install &amp; Setup</a></p>
     <p>StreamGraphics Pro runs on your own computer — Windows or Mac. Download it from the pricing page, install, and launch it like any program. When it starts, it opens the <b>home screen</b> (the "All graphics" menu) in your browser. Leave the app running for the whole show; closing it takes your graphics offline.</p>
+
+    <h3>Windows</h3>
+    <p>One installer, no separate downloads. It installs just for you, so it does not ask for an administrator password, and it adds a <b>StreamGraphics Pro</b> shortcut to your desktop and Start Menu.</p>
     <p><b>Putting it on the taskbar.</b> Right-click the Start Menu entry or the desktop icon and choose <b>Pin to taskbar</b>. From then on the app is one click away, with its own icon.</p>
+
+    <h3>Mac</h3>
+    <p>There are two Mac downloads, and they are not interchangeable:</p>
+    <ul>
+      <li><b>Apple Silicon</b> — every Mac from late 2020 onwards (M1, M2, M3, M4). This is almost certainly the one you want.</li>
+      <li><b>Intel</b> — Intel Macs, 2020 and earlier.</li>
+    </ul>
+    <p>Not sure which you have? <b>Apple menu → About This Mac</b>. A line saying <b>Chip</b> followed by Apple means Apple Silicon; a line saying <b>Processor</b> followed by Intel means Intel. The Apple Silicon version will not start at all on an Intel Mac, so it is worth thirty seconds to check.</p>
+    <p>There is no installer to run. Double-click the download to unzip it, then drag <b>StreamGraphics Pro</b> into your <b>Applications</b> folder. Open it the way you open anything else. To keep it handy, right-click its icon in the Dock while it is running and choose <b>Options → Keep in Dock</b>.</p>
+    <p><b>Where your work is kept.</b> On a Mac your designs, shows, scripts and uploaded images live in your own Library folder, not inside the app — at <code>~/Library/Application Support/StreamGraphics Pro</code>. That is deliberate: it means replacing the app with a newer version never touches your work. The first time you run a new version it brings everything across by itself; there is nothing to move.</p>
     <h3>The home screen</h3>
     <p>The home screen lists your graphics, the Control API, and your license status:</p>
     <ul>
@@ -116,8 +134,33 @@
       <li>Use it as an overlay channel over your program.</li>
     </ol>
 
-    <h2 id="chroma">Transparency &amp; chroma key</h2>
-    <p>The output is transparent by default, so it composites cleanly in OBS/vMix — no keying needed. If you're feeding a <b>hardware switcher</b> (which needs solid video), use the <b>Chroma key</b> selector on the builder: pick Green, Blue, Magenta, White, Black, Red, or a Custom colour that doesn't appear in your graphic, and key that colour in your switcher. Full-screen graphics don't need a key at all.</p>
+    <h2 id="chroma">Choose your output</h2>
+    <p>Every control panel has one box marked <b>Output</b>. It answers a single question — what is receiving this graphic — and then hands you the exact address to paste into it. The mode and the link live together on purpose: they are the same decision, and looking them up separately is how an operator ends up pasting a transparent output into a switcher that cannot key it.</p>
+    <p>Four choices, in order of how much the receiving end can do for itself:</p>
+    <ul>
+      <li><b>Transparent — OBS / vMix.</b> The default, and right for almost everyone. OBS and vMix understand transparency directly, so there is nothing to key. Add it as a Browser Source at 1920&nbsp;×&nbsp;1080 and the background is simply not there.</li>
+      <li><b>Chroma colour — hardware keyer.</b> Puts a solid colour behind the graphic for a switcher that keys on colour. Green, Blue, Magenta, Red, or a custom colour. Pick one that does not appear anywhere in the graphic itself.</li>
+      <li><b>Luma key — black background.</b> The same idea, keyed on brightness instead of colour. Cheap and widely supported, but it decides transparency from how dark a pixel is — so anything genuinely dark in your graphic goes see-through along with the background. Drop shadows, a navy bar, the shaded edge of a letter. Fine for bright text on black; wrong for a full-colour graphic.</li>
+      <li><b>Key + fill — two outputs.</b> Nothing is guessed. See below.</li>
+    </ul>
+    <p>Your choice is remembered in that browser, per panel. Full-screen graphics going straight to a projector or a monitor need none of this.</p>
+
+    <h2 id="keyfill">Key + fill</h2>
+    <p>This is the right answer for a hardware switcher, and the reason is worth understanding: every other mode asks the switcher to <i>work out</i> what is transparent, from a colour or from brightness. Key and fill tells it.</p>
+    <p>Choose <b>Key + fill</b> and the panel gives you two links instead of one:</p>
+    <ul>
+      <li><b>FILL</b> — the graphic itself, on black.</li>
+      <li><b>KEY</b> — the matte: white wherever the graphic is, black where it is not.</li>
+    </ul>
+    <p>Send those out of two video outputs on this computer and wire them to the switcher's fill and key inputs. On an ATEM, turn <b>pre-multiplied key</b> on.</p>
+    <p>Because the switcher is told rather than guessing, the things that break a chroma or luma key survive intact — soft feathered edges, drop shadows, a half-transparent panel with video showing through it, antialiasing on text.</p>
+    <p>It does need two video outputs from the machine. With only one, use Luma or Chroma above.</p>
+    <p>Key and fill is a property of the link you open, not of the design. Opening a key window does not change what anyone else is seeing.</p>
+
+    <h2 id="monitor">Send it to a monitor</h2>
+    <p>Feeding a screen, a projector or a hardware switcher straight off this computer? Rather than dragging a browser window across the desk and hunting for full screen, any panel can do it: <b>Put it on a monitor</b> → <b>Find my monitors</b>, pick one, and <b>Open there</b>. It opens full screen on that display, with no browser furniture. Close it from the same place.</p>
+    <p>It remembers the monitor <i>by name</i>, not by position. That matters between shows: unplug a screen, plug a different one in, and the next show does not end up putting your graphics on the wrong display.</p>
+    <p>If only one monitor is connected it will tell you so rather than pretending to offer a choice. <b>Check for monitor changes</b> re-reads the list if you have plugged something in since.</p>
 
     <h2 id="builder-basics">Graphics builder — the canvas &amp; selecting</h2>
     <p style="margin:8px 0 14px;font-size:14px"><a href="tutorials.html" style="color:var(--accent);font-weight:600;text-decoration:none">&#9654; Watch the video: The Lower Thirds Engine</a></p>
@@ -135,6 +178,17 @@
     <p>Under the canvas you can load a <b>reference image</b> (a screenshot of the look you're matching) at an adjustable opacity. It's a design aid only — it never appears on air.</p>
     <h3>Saving your work</h3>
     <p><b>Take to air</b> previews the design on the output. <b>Save to Library</b> stores it as a reusable preset. <b>New</b> clears the canvas for a fresh design. <b>Templates</b> starts you from a ready-made look.</p>
+
+    <h2 id="guides">Framing guides</h2>
+    <p>The row of chips under the canvas turns on framing guides. They are a design aid and are <b>never on the output</b> — the output page draws layers, and there is no guide layer for it to draw. Press <b>G</b> to hide and bring back the lot.</p>
+    <ul>
+      <li><b>Title safe</b> — the inner 90% of the frame (SMPTE RP 218). Keep names, titles and any text you need read inside this.</li>
+      <li><b>Action safe</b> — the inner 93%. Anything outside it can be cut off by a viewer's screen.</li>
+      <li><b>Centre</b> — vertical and horizontal centre lines, for lining a title card up properly.</li>
+      <li><b>Thirds</b> — a rule-of-thirds grid.</li>
+      <li><b>Phone / 4:3 crops</b> — vertical markings showing what survives when this 16:9 graphic is re-cropped to 4:3, square, or 9:16 for a phone. Worth a look if the same show goes out to social afterwards.</li>
+    </ul>
+    <p>Which guides you like is your preference, not part of the design, so the app remembers them for you rather than storing them in the graphic. Turning them on cannot change what anybody else sees.</p>
 
     <h2 id="layers">The Layers panel</h2>
     <p>Everything you add is listed here, top layer first. For each layer:</p>
@@ -154,7 +208,7 @@
     <p>A <b>Box</b> is a coloured rectangle — perfect as a backing bar behind text. Options: <b>Fill</b> colour, <b>Opacity</b> (for a translucent panel), and <b>Radius</b> (rounded corners). A <b>BG</b> is simply a full-screen box for a solid background.</p>
 
     <h3>Gradient fill</h3>
-    <p>Set <b>Fill style</b> to <b>Gradient</b> and you get a second colour, its own opacity, and a <b>Direction</b> dial. <b>Gradient (radial)</b> spreads from a point instead of across the bar.</p>
+    <p>Set <b>Fill style</b> to <b>Gradient (linear)</b> and you get a second colour, its own opacity, and a <b>Direction</b> dial that swings the blend round. <b>Gradient (radial)</b> spreads from a point outwards instead of running across the bar.</p>
     <p>The most useful setting is the least obvious one: give the far end an opacity of <b>0</b>. The bar then fades out into the picture instead of stopping on a hard vertical line — the standard broadcast lower-third look, and the reason most people open Photoshop.</p>
 
     <h3>Soft edges</h3>
@@ -168,8 +222,18 @@
     <h2 id="layer-image">Image layer</h2>
     <p>Add an image by pasting a URL or clicking <b>Browse</b> to upload one. Options: <b>Shape</b> (none / rounded / circle — great for headshots) and <b>Fit</b> (contain shows the whole image; cover fills the frame). Set a <b>CSV field</b> to drive different images per row from a spreadsheet.</p>
 
+    <h3>Recolour</h3>
+    <p>An image layer can be recoloured without leaving the app:</p>
+    <ul>
+      <li><b>Tint to a colour</b> — pushes the whole image towards one colour you pick. Made for a flat logo or a mono icon that needs to match tonight's accent.</li>
+      <li><b>Shift the hue</b> — rotates the colours round the wheel, keeping the light and shade. Better for a photograph, where a flat tint would kill it.</li>
+    </ul>
+    <p>Either can be driven from a spreadsheet column with <b>Tint from field</b>, which is the useful part: one design, and the same badge comes out in a different team's colour on every row.</p>
+
     <h2 id="layer-video">Video layer</h2>
-    <p>Add a video by URL or Browse. Options: <b>Autoplay on air</b>, <b>Loop</b>, <b>Muted</b>, <b>Fit</b>, and <b>When it ends</b> (Hold last frame, or Hide). There are Play / Pause / Restart controls too. Notes: browsers require videos to start <b>muted</b> to autoplay; for a transparent clip use a <b>WebM (VP9) with alpha</b>. Very large files can be slow — keep clips reasonably sized.</p>
+    <p>Add a video with <b>Browse</b>, or paste a link to a video <b>file</b>. Options: <b>Autoplay on air</b>, <b>Loop</b>, <b>Muted</b>, <b>Fit</b>, and <b>When it ends</b> (Hold last frame, or Hide). There are Play / Pause / Restart controls too.</p>
+    <p><b>It needs a file, not a page.</b> An <code>.mp4</code> or <code>.webm</code>. A YouTube or Vimeo address is a web page wrapped around a player, not a video file, so pasting one leaves the layer empty — the app will say so if you try. Download the video as an mp4 and use <b>Browse</b> instead. That is the better answer anyway: the clip then plays from your own computer, with no internet needed and nothing able to drop an advert into the middle of your show.</p>
+    <p>Notes: browsers require videos to start <b>muted</b> to autoplay; for a clip with transparency use a <b>WebM (VP9) with alpha</b>. Very large files can be slow — keep clips reasonably sized.</p>
 
     <h2 id="layer-ticker">Ticker layer</h2>
     <p>A scrolling headline bar. Type your text (use the ⤢ pop-out for long text), and set <b>Speed</b>, <b>Direction</b>, text colour/size/bold, and the bar's <b>Fill</b>, <b>Opacity</b> and <b>Radius</b>. A ticker also takes a <a href="#layer-box">gradient, soft edges and a drop shadow</a> — feathering both sides is a good way to stop a full-width bar from cutting the frame in half.</p>
@@ -237,6 +301,28 @@
 
     <h2 id="align">Align &amp; nudge</h2>
     <p>Select one or more layers and use the <b>Align</b> buttons — Left, Center, Right, Top, Middle, Bottom. With one layer selected it aligns to the whole frame; with several selected it aligns them to each other. Arrow keys nudge the selection 1px (10px with <kbd>Shift</kbd>).</p>
+
+    <h2 id="fields">Fields — what a design asks to be filled in</h2>
+    <p>A design can declare the things that change. Instead of hunting through layers for the right text box every time you put a graphic on air, you get a short form to fill in.</p>
+    <p>In the builder, any Text layer can take a <b>Fills from field</b> name — say <code>Name</code> or <code>Title</code>. An Image layer can do the same, and a Box or Ticker can take its colour from a field with <b>Colour from field</b>. That last one is deliberately separate, because a layer often takes its words from one field and its colour from another: a player's name, and their team's colour.</p>
+    <p>The <b>Fields</b> list underneath is where you say what those names mean. Each one gets a type — <b>Text</b>, <b>Text (several lines)</b>, <b>Image</b>, <b>Colour</b> or <b>Number</b> — so whoever fills it in gets the right kind of box rather than a bare line to type into.</p>
+    <p>Already built a design the old way? <b>Find the fields in this design</b> reads through the layers and lists what it finds, so you do not have to declare them by hand.</p>
+    <p>Fields are what the spreadsheet mail-merge fills in, and what the Show Library shows you when you put a saved graphic on air. One design, described once, driven three different ways.</p>
+    <p>One safeguard worth knowing: a colour field only ever accepts a <code>#hex</code> value. Anything else is ignored. So a stray "TBC" in a spreadsheet column cannot black out your lower third in the middle of a show.</p>
+
+    <h2 id="game">Football &amp; basketball</h2>
+    <p>A scoreboard built for clock sports, separate from the volleyball and baseball boards. Open <b>Football / Basketball</b> from the Scoreboards page, and pick which of the two you are running with the <b>Football</b> / <b>Basketball</b> chips — the board relabels itself to suit.</p>
+    <h3>The clocks</h3>
+    <p>The <b>Game clock</b> is a real clock: <b>START</b> runs it, the same button stops it, and <b>Apply</b> sets the period length. <b>Next period</b> moves you on.</p>
+    <p>Beside it is a second clock — the <b>play clock</b> in football, the shot clock in basketball. <b>Reset full</b> and <b>Reset short</b> put it back to its two usual values (40 and 25 in football; 24 and 14 in basketball), which is the pair you actually reach for during a game. <b>Show play clock</b> takes it off the graphic when it is not wanted.</p>
+    <p>Both clocks are counted on the app, not in the browser showing the board. Every screen displaying it is reading the same clock, so a confidence monitor and the program feed cannot drift apart, and a browser source that reloads mid-quarter comes back in step.</p>
+    <h3>Teams</h3>
+    <p>Each side has a <b>Name</b>, an <b>Abbr</b> for the small board, a <b>Colour</b>, and a <b>Logo</b> you can Browse for. Then <b>Score</b>, <b>Timeouts</b>, <b>Fouls</b>, and <b>Give possession</b> — which is a single button rather than a toggle each, so you cannot accidentally show both teams with the ball.</p>
+    <h3>Football's extra line</h3>
+    <p>Football adds <b>Down</b>, <b>To go</b> and <b>Ball on</b>, plus a free-text <b>Label</b> for the period if "4th" is not what you want to say.</p>
+    <h3>Look</h3>
+    <p><b>Position</b> puts the board in any of nine places on the frame, <b>Accent</b> sets its colour, and <b>Animation</b> chooses how it arrives — Slide up, Fade or Scale. <b>Nudge</b> shifts it a few pixels if it is fighting something else in your layout.</p>
+    <p>The output is at <code>/game-output</code>, and the <b>Choose your output</b> box works exactly as it does everywhere else.</p>
 
     <h2 id="sb-setup">Scoreboard — setting up a match</h2>
     <p>Open the Scoreboard control. For each team, set <b>Player 1 / Player 2</b> names and a <b>Seed</b>, or pick a saved team from the <b>team library</b> dropdown. Set the event <b>Title</b>, <b>Presenter</b> and <b>Bracket label</b> at the top.</p>
@@ -311,7 +397,8 @@
     <h2 id="packs">Templates &amp; template packs</h2>
     <p>Hit <b>▤ Templates</b> in the builder to see every design you can start from, each drawn as a real preview rather than a name in a list — what you see on the card is what lands on your canvas. Click a preview to load it, then customise it and save it to your Library.</p>
     <figure style="margin:16px 0 20px"><img src="img/templates-demo.gif?v=1" alt="Browsing the templates as live previews, searching, then using one and taking it to air" loading="lazy" style="width:100%;max-width:900px;height:auto;border-radius:12px;border:1px solid var(--line);display:block"><figcaption style="font-size:13px;opacity:.72;margin-top:7px">Every design previews itself. Search, click, and it opens on the canvas ready to edit.</figcaption></figure>
-    <p>The built-ins cover clean lower thirds in several colours, full-screen title, colour and photo backgrounds, a countdown card, a news ticker, "coming up next", a sponsor bar and a LIVE bug. <b>＋ Save current design</b> adds whatever is on your canvas to the list.</p>
+    <p>The built-ins cover clean lower thirds in several colours (including a wide bar, crimson and teal), a minimal name bar, a centred title card, full-screen title, colour and photo backgrounds, a countdown card, a news ticker, "coming up next", a sponsor bar and a corner LIVE bug. <b>＋ Save current design</b> adds whatever is on your canvas to the list.</p>
+    <p>There is also <b>Head to Head — Matchup</b>: two competitors side by side with a photo each and a row of stats under both. It is built out of fields, so it is worth opening even if you never use it as-is — it is the clearest example of a design that asks to be filled in rather than edited.</p>
     <p>Use the chips along the top to move between <b>Built-in</b>, <b>My designs</b> and any pack you've installed, or type in the search box to find one by name.</p>
 
     <h3>Installing a pack</h3>
@@ -378,6 +465,9 @@
 
     <h2 id="updates">Updating</h2>
     <p>When a new version is available you'll see a notice in the app with a link to download it. To update, download the new version and restart the app. Note: refreshing your browser alone won't add new features — the update replaces the app itself. Your saved presets, templates and media stay put.</p>
+    <p>On <b>Windows</b>, run the new installer over the top. On a <b>Mac</b>, drag the new app into Applications and replace the old one — your work is not inside the app, so this cannot touch it.</p>
+    <p>The notice offers the download that matches the machine asking, so an Intel Mac is never pointed at the Apple Silicon build or vice versa.</p>
+    <p>Every version has a page of its own describing what changed — see <a href="release-notes.html">What's new</a>.</p>
 
     <h2 id="shortcuts">Keyboard shortcuts (builder)</h2>
     <ul>
