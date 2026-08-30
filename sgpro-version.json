@@ -1,8 +1,8 @@
 {
-  "version":     "1.0.40",
+  "version":     "1.0.41",
   "url":         "https://streamgraphicspro.com/dl.php?u=1",
   "macUrl":      "https://streamgraphicspro.com/dl.php?u=1&b=mac-arm",
   "macArm64Url": "https://streamgraphicspro.com/dl.php?u=1&b=mac-arm",
   "macX64Url":   "https://streamgraphicspro.com/dl.php?u=1&b=mac-intel",
-  "notes": "Section headings on every control panel now sit on their own bar, so a long panel is easier to scan mid-show. On a Box or BG layer the Fill style menu now says Gradient (linear) and Gradient (radial) rather than leaving you to guess which was which - same two gradients, clearer names. The video layer says it wants an .mp4 or .webm file, and tells you so if you paste a YouTube or Vimeo page address instead. On a Mac the update notice now offers the download that matches your machine, so an Intel Mac is no longer pointed at the Apple Silicon version."
+  "notes": "Colour wash for photo layers: push a picture into a team colour while keeping the photograph - every highlight, shadow and edge survives, only the colour changes. It is the two-tone look used for a head-to-head, and the colour can come from a spreadsheet column so one design carries a different team on every row. Also: rotation you can type. Layers could always be turned with the handle on the canvas; there is now a slider and a number box under Position and size, because a row of angled panels only looks deliberate when every one sits on exactly the same angle."
 }
