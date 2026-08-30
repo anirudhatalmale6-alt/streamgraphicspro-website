@@ -159,6 +159,6 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 </div></section>
 <?php endif; ?>
 
-<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="docs.html">Guide</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="tutorials.html">Videos</a> · <a href="contact.html">Contact</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
+<footer><div class="wrap"><div>© StreamGraphics Pro · made with care by Mark</div><div><a href="docs.html">Guide</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="tutorials.html">Videos</a> · <a href="contact.html">Contact</a> · <a href="release-notes.html">What's new</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div></div></footer>
 </body>
 </html>

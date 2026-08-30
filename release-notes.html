@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's new — StreamGraphics Pro</title>
+<meta name="description" content="What changed in each release of StreamGraphics Pro — new features, fixes and improvements, newest first.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef6a4c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* Scoped to .rn so nothing here can reach the rest of the site. Colours come from site.css
+     variables rather than hard-coded hexes, so if the palette ever changes this follows it. */
+  .rn{max-width:760px;margin:0 auto}
+  .rn .v{border-top:1px solid var(--line);padding:26px 0 6px}
+  .rn .v:first-of-type{border-top:none;padding-top:8px}
+  .rn .vh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+  .rn .vh h3{font-size:20px;margin:0;letter-spacing:-.2px}
+  .rn .tag{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;background:var(--panel2);color:var(--accent-dk);
+    border:1px solid var(--line)}
+  .rn .tag.new{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .rn ul{margin:0;padding-left:22px}
+  .rn li{margin:0 0 10px;line-height:1.65;color:var(--muted)}
+  .rn li b{color:var(--txt)}
+  .rn .lede{color:var(--muted);font-size:16.5px;line-height:1.65;margin:0 0 30px}
+  .rn .foot{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
+    color:var(--muted2);font-size:14.5px;line-height:1.6}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="logomark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="flex:none"><defs><linearGradient id="sgm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4a63c"/><stop offset="1" stop-color="#ef6a4c"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#sgm)"/><rect x="6" y="11.5" width="13.5" height="9" rx="2.2" fill="#fff"/><path d="M20.5 13.8 L26 10.5 L26 21.5 L20.5 18.2 Z" fill="#fff"/></svg> StreamGraphics Pro</a>
+  <button class="menubtn" onclick="document.getElementById('nv').classList.toggle('open')">☰</button>
+  <nav id="nv">
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="tutorials.html">Videos</a>
+    <a href="docs.html">Guide</a>
+    <a href="companion.html">Companion</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a class="navcta" href="get-started.php">Download</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap">
+  <div class="center"><h2>What's new</h2></div>
+  <div class="rn">
+    <p class="lede">StreamGraphics Pro tells you when there's a newer version. Download it and install
+      over the top — your presets, templates, saved shows and scripts are left exactly as they are.</p>
+
+<!-- ============================================================================
+     ONE BLOCK PER VERSION, NEWEST AT THE TOP.
+
+     Mark — I do not know which of these your customers actually received, because
+     you publish the installers yourself. Delete any version that never went out.
+     A release note for a build nobody could download is worse than no page at all:
+     the first thing someone does is go looking for it.
+
+     To add the next one, copy the block marked TEMPLATE at the bottom of this file
+     and drop it directly under this comment.
+     ============================================================================ -->
+
+    <article class="v">
+      <div class="vh"><h3>1.0.39</h3><span class="tag new">Mac</span></div>
+      <ul>
+        <li><b>StreamGraphics Pro runs on a Mac.</b> Separate downloads for Apple Silicon
+            (M1 and later) and Intel Macs, alongside the Windows version. Same app, same panels,
+            same output links.</li>
+        <li>On a Mac your work is kept in your own Library folder rather than inside the app, so
+            replacing the app with a newer one never touches it.</li>
+        <li>The font menu now offers typefaces that exist on both Windows and Mac, so a graphic you
+            design on one looks the same on the other. Worth knowing if you share or sell designs.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.38</h3></div>
+      <ul>
+        <li><b>Choose your output.</b> One box on every control panel. It sets how the graphic
+            leaves the app — transparent for OBS and vMix, a chroma color, a luma key, or key and
+            fill for a hardware switcher — and hands you the exact address to paste in.</li>
+        <li><b>Recolor a picture layer</b> without leaving the app: tint it to a color you pick,
+            or shift its hue. Either can be driven from a spreadsheet column, so one design can
+            carry a different team's color on every row.</li>
+        <li>New <b>Head to Head</b> template — two competitors, photos, and a row of stats each.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.37</h3></div>
+      <ul>
+        <li><b>Send an output to a monitor.</b> Any panel can put its output full screen on a screen
+            you choose, and take it off again from the same place. It remembers the monitor by name,
+            so unplugging a screen between shows will not put the next one on the wrong one.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.36</h3></div>
+      <ul>
+        <li><b>Football and basketball scoreboards.</b> A real game clock, the shot clock or play
+            clock beside it, period, fouls, timeouts and possession — driven from a control panel
+            and matching on every screen showing it.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.35</h3></div>
+      <ul>
+        <li><b>Designs say what they need.</b> A graphic can declare the things that get filled in —
+            a name, a title, a photo, a color — so putting one on air is a short form to fill,
+            instead of hunting through layers for the right text box.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.34</h3></div>
+      <ul>
+        <li><b>Key and fill, for hardware switchers.</b> Two outputs instead of one: your graphic on
+            black, and a matching white silhouette. Wire them to the switcher's fill and key inputs
+            and it is told what is transparent rather than guessing from a color. Soft edges, drop
+            shadows and see-through panels survive intact.</li>
+      </ul>
+    </article>
+
+    <article class="v">
+      <div class="vh"><h3>1.0.33</h3></div>
+      <ul>
+        <li><b>Framing guides on the design canvas</b> — title safe, action safe, center lines,
+            thirds, and vertical crop markings for anything headed to a phone screen. On while you
+            design, never on the output.</li>
+      </ul>
+    </article>
+
+<!-- TEMPLATE — copy this for the next version and put it directly under the big comment above.
+    <article class="v">
+      <div class="vh"><h3>1.0.40</h3></div>
+      <ul>
+        <li><b>Short headline.</b> One or two sentences on what it does for the person using it.</li>
+      </ul>
+    </article>
+-->
+
+    <p class="foot">Running an older version? Open StreamGraphics Pro and it will tell you when an
+      update is ready, or <a href="get-started.php">grab the latest download</a>.
+      Something not working the way you expect? <a href="contact.html">Tell me</a> — I read every message.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>© StreamGraphics Pro · made with care by Mark</div>
+  <div><a href="docs.html">Guide</a> · <a href="tutorials.html">Videos</a> · <a href="faq.html">FAQ</a> · <a href="companion.html">Companion</a> · <a href="pricing.html">Pricing</a> · <a href="release-notes.html">What's new</a> · <a href="eula.html">License</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></div>
+</div></footer>
+</body>
+</html>
