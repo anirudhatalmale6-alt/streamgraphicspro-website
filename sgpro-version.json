@@ -1,5 +1,8 @@
 {
-  "version": "1.0.25",
-  "url": "https://streamgraphicspro.com/dl.php?u=1",
-  "notes": "Fixes the licence report, which was being refused by the web host and failing silently. The app did not put a name on its outgoing requests, and a request that does not identify itself looks like a bot, so the host's firewall answered 403 to every report. Update checks and the revoked-key list were never affected - those are plain files the firewall does not see. Nothing else changes."
+  "version":     "1.0.40",
+  "url":         "https://streamgraphicspro.com/dl.php?u=1",
+  "macUrl":      "https://streamgraphicspro.com/dl.php?u=1&b=mac-arm",
+  "macArm64Url": "https://streamgraphicspro.com/dl.php?u=1&b=mac-arm",
+  "macX64Url":   "https://streamgraphicspro.com/dl.php?u=1&b=mac-intel",
+  "notes": "Section headings on every control panel now sit on their own bar, so a long panel is easier to scan mid-show. On a Box or BG layer the Fill style menu now says Gradient (linear) and Gradient (radial) rather than leaving you to guess which was which - same two gradients, clearer names. The video layer says it wants an .mp4 or .webm file, and tells you so if you paste a YouTube or Vimeo page address instead. On a Mac the update notice now offers the download that matches your machine, so an Intel Mac is no longer pointed at the Apple Silicon version."
 }

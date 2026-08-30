@@ -63,6 +63,10 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
   .msg{border-radius:12px;padding:12px 16px;font-size:14.5px;margin-bottom:6px}
   .msg.bad{background:#fdecea;border:1px solid #f5c2bd;color:#8a2418}
   .msg.warn{background:#fff6e5;border:1px solid #f2d9a7;color:#7a5510}
+  /* The three download buttons. Wraps to one per line on a phone. */
+  .dlpick{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:22px 0 18px}
+  .dlpick .btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;line-height:1.25;text-align:center}
+  .dlpick .btn small{font-size:12px;font-weight:600;opacity:.8}
   .dlbox{max-width:620px;margin:0 auto;text-align:left}
   .dlbox code{background:var(--panel2);border:1px solid var(--line);padding:3px 8px;border-radius:7px;font-size:13.5px;word-break:break-all}
 </style>
@@ -81,15 +85,34 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 <?php if ($done): ?>
 <section><div class="wrap center">
   <h2>You're all set, <?= h(explode(' ', $name)[0]) ?> 👋</h2>
-  <p class="lead">Here's your download. I've also sent the link to <b><?= h($email) ?></b> so you can grab it on another machine.</p>
-  <p><a class="btn" href="<?= h($link) ?>">Download for Windows</a></p>
+  <?php
+    /* Every build that is actually on the server. No guessing at the visitor's computer: they
+       pick. A build that has not been uploaded yet simply does not appear, so there is never a
+       button here that leads to a missing file. */
+    $builds = array_filter(sgpro_builds(), fn($b) => $b['ready']);
+    $anyMac = isset($builds['mac-arm']) || isset($builds['mac-intel']);
+  ?>
+  <p class="lead">Pick the one for your computer. I've also sent these to <b><?= h($email) ?></b> so you can grab it on another machine.</p>
+  <p class="dlpick">
+    <?php foreach ($builds as $key => $b): ?>
+      <a class="btn<?= $key === 'win' ? '' : ' alt' ?>" href="<?= h($link) ?>&amp;b=<?= h($key) ?>">
+        <?= h($b['label']) ?><small><?= h($b['note']) ?></small></a>
+    <?php endforeach; ?>
+  </p>
   <div class="dlbox">
+    <?php if ($anyMac): ?>
+      <p style="color:var(--muted);font-size:13.5px;line-height:1.6;text-align:center;margin:-2px 0 0">
+        Not sure which Mac you have? <b>Apple menu → About This Mac</b>. A "Chip" line starting with
+        <b>Apple</b> means Apple Silicon; a "Processor" line saying <b>Intel</b> means Intel.
+      </p>
+    <?php endif; ?>
     <?php if (!$mailed): ?>
-      <div class="msg warn">The e-mail didn't go out just now — no problem, the button above works. If you want it on another computer, copy this link: <code><?= h($link) ?></code></div>
+      <div class="msg warn" style="margin-top:18px">The e-mail didn't go out just now — no problem, the buttons above work. If you want it on another computer, copy this link: <code><?= h($link) ?></code></div>
     <?php endif; ?>
     <p style="color:var(--muted);font-size:14.5px;line-height:1.65;margin-top:18px">
-      <b>What happens next:</b> run the installer, and it puts a <b>StreamGraphics Pro</b> shortcut on your desktop and in the Start Menu.
-      Launching it opens your control panel in the browser at <code>http://localhost:4000</code>. Nothing runs in the cloud —
+      <b>What happens next.</b> On Windows, run the installer and it puts a <b>StreamGraphics Pro</b> shortcut on your desktop
+      and in the Start Menu.<?php if ($anyMac): ?> On a Mac, unzip it and drag the app into your <b>Applications</b> folder.<?php endif; ?>
+      Either way, opening it brings up your control panel in the browser at <code>http://localhost:4000</code>. Nothing runs in the cloud —
       it's all on your own computer.
     </p>
     <p style="color:var(--muted);font-size:14.5px;line-height:1.65">

@@ -112,6 +112,53 @@ function sgpro_seen_health(): array {
     ];
 }
 
+/* The three downloads: Windows, and the two Mac builds.
+ *
+ * Deliberately worked out here with sensible defaults rather than by adding lines to
+ * sgpro-config.php. An existing config keeps working untouched - upload the PHP, drop the two
+ * Mac zips into the download folder, edit nothing. If you ever want them somewhere else, define
+ * SGPRO_MAC_ARM_FILE / SGPRO_MAC_INTEL_FILE in the config and these give way to them.
+ *
+ * `key` is what appears in the ?b= parameter. It is a lookup into THIS fixed list and never
+ * touches a path, so no ?b= value a stranger invents can reach a file that is not on it. */
+function sgpro_builds(): array {
+    $dir = dirname(SGPRO_FILE);
+    $out = [
+        'win' => [
+            'file'  => SGPRO_FILE,
+            'name'  => SGPRO_FILE_NAME,
+            'label' => 'Windows',
+            'note'  => 'Windows 10 and 11',
+        ],
+        'mac-arm' => [
+            'file'  => defined('SGPRO_MAC_ARM_FILE') ? SGPRO_MAC_ARM_FILE
+                                                     : $dir . '/StreamGraphics-Pro-mac-AppleSilicon.zip',
+            'label' => 'Mac — Apple Silicon',
+            'note'  => 'M1, M2, M3, M4 — most Macs since late 2020',
+        ],
+        'mac-intel' => [
+            'file'  => defined('SGPRO_MAC_INTEL_FILE') ? SGPRO_MAC_INTEL_FILE
+                                                       : $dir . '/StreamGraphics-Pro-mac-Intel.zip',
+            'label' => 'Mac — Intel',
+            'note'  => 'Intel Macs, 2020 and earlier',
+        ],
+    ];
+    foreach ($out as $k => $b) {
+        $out[$k]['name']  = $b['name'] ?? basename($b['file']);
+        // Whether the file is actually on the server yet. The pages use this so a build you have
+        // not uploaded is simply not offered, rather than handed out as a broken download.
+        $out[$k]['ready'] = is_readable($b['file']);
+    }
+    return $out;
+}
+
+/** One build by key. Anything unrecognised falls back to Windows, so old e-mailed links
+ *  - which carry no ?b= at all - keep working exactly as they did. */
+function sgpro_build(string $key): array {
+    $all = sgpro_builds();
+    return $all[$key] ?? $all['win'];
+}
+
 function sgpro_site_url(): string {
     $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
@@ -168,13 +215,32 @@ function sgpro_save_lead(array $row): bool {
 function sgpro_send_link(string $name, string $email, string $link): bool {
     $first = trim(explode(' ', trim($name))[0]) ?: 'there';
     $subject = 'Your StreamGraphics Pro download';
+
+    /* One link per build that is actually on the server. The old wording said "run the installer
+     * ... desktop and Start Menu", which is Windows and only Windows - a Mac customer following
+     * it goes looking for a Start Menu. */
+    $lines = [];
+    foreach (sgpro_builds() as $key => $b) {
+        if (!$b['ready']) { continue; }
+        $lines[] = "  " . $b['label'] . " (" . $b['note'] . ")\r\n"
+                 . "  " . $link . "&b=" . $key . "\r\n";
+    }
+    $choice = count($lines) > 1;
+    $links = implode("\r\n", $lines ?: ["  $link\r\n"]);
+
     $body =
         "Hi $first,\r\n\r\n" .
-        "Thanks for giving StreamGraphics Pro a go. Here's your download:\r\n\r\n" .
-        "  $link\r\n\r\n" .
-        "Run the installer and it adds a StreamGraphics Pro shortcut to your desktop and Start Menu.\r\n" .
-        "Launching it opens your control panel in the browser at http://localhost:4000 — everything runs\r\n" .
-        "on your own computer, nothing in the cloud.\r\n\r\n" .
+        "Thanks for giving StreamGraphics Pro a go. " .
+        ($choice ? "Pick the one for your computer:\r\n\r\n" : "Here's your download:\r\n\r\n") .
+        $links . "\r\n" .
+        ($choice
+            ? "Not sure which Mac you have? Apple menu > About This Mac. A \"Chip\" line starting\r\n"
+              . "with Apple means Apple Silicon; a \"Processor\" line saying Intel means Intel.\r\n\r\n"
+            : "") .
+        "On Windows, run the installer and it puts a StreamGraphics Pro shortcut on your desktop\r\n" .
+        "and in the Start Menu. On a Mac, unzip it and drag the app into your Applications folder.\r\n\r\n" .
+        "Either way, opening it brings up your control panel in the browser at http://localhost:4000\r\n" .
+        "— everything runs on your own computer, nothing in the cloud.\r\n\r\n" .
         "If you get stuck or you've got an idea for it, just reply to this e-mail. I read every one.\r\n\r\n" .
         "Mark\r\n" .
         "Manhattan Beach Studios\r\n" .
